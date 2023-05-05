@@ -1,12 +1,105 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using CulinaryMap.Models.Request;
+using CulinaryMap.Services;
+using CulinaryMap.Services.Interfaces;
+using Microsoft.AspNetCore.Mvc;
+using System.Runtime.CompilerServices;
 
 namespace CulinaryMap.Controllers
 {
-    public class RecipeController : Controller
+    [Route("api/[controller]")]
+    [ApiController]
+    public class RecipeController : ControllerBase
     {
-        public IActionResult Index()
+        private readonly IRecipeService recipeService;
+        public RecipeController(IRecipeService recipeService)
         {
-            return View();
+            this.recipeService = recipeService;
+        }
+
+        [HttpGet("ById")]
+        public async Task<IActionResult> GetRecipeById(int id)
+        {
+            try
+            {
+                var response = await recipeService.GetRecipe(id);
+                if (response == null)
+                {
+                    return BadRequest();
+                }
+                return Ok(response);
+            }
+            catch (Exception ex)
+            {
+                return BadRequest(ex.Message);
+            }
+        }
+
+        [HttpGet]
+        public async Task<IActionResult> GetRecipes()
+        {
+            try
+            {
+                var response = recipeService.GetRecipes();
+                if (response == null)
+                {
+                    return BadRequest();
+                }
+                return Ok(response);
+            }
+            catch (Exception ex)
+            {
+                return BadRequest(ex.Message);
+            }
+        }
+
+        [HttpPost]
+        public async Task<IActionResult> CreateRecipe(RecipeModel model)
+        {
+            try
+            {
+                var response = await recipeService.CreateRecipe(model);
+                if (response == null)
+                {
+                    return BadRequest();
+                }
+                return Ok(response);
+            }
+            catch (Exception ex)
+            {
+                return BadRequest(ex.Message);
+            }
+        }
+
+        [HttpPut]
+        public async Task<IActionResult> UpdateRecipe(UpdateRecipeModel model)
+        {
+            try
+            {
+                var response = await recipeService.UpdateRecipe(model);
+                if (response == null)
+                {
+                    return BadRequest();
+                }
+                return Ok(response);
+            }
+            catch (Exception ex)
+            {
+                return BadRequest(ex.Message);
+            }
+        }
+
+        [HttpDelete]
+        public IActionResult DeleteRecipe(int id)
+        {
+            try
+            {
+                recipeService.DeleteRecipe(id);
+                return Ok();
+            }
+            catch (Exception ex)
+            {
+                return BadRequest(ex.Message);
+            }
         }
     }
 }

@@ -10,6 +10,8 @@ namespace CulinaryMap.Mappings
         {
             CreateMap<IngredientModel, IngredientDetails>();
             CreateMap<UpdateIngredientModel, IngredientDetails>();
+            CreateMap<RecipeIngredientModel, RecipeIngredient>();
+            CreateMap<UpdateRecipeIngredientModel, RecipeIngredient>();
         }
     }
 }

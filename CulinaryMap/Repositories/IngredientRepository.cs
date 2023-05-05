@@ -83,6 +83,13 @@ namespace CulinaryMap.Repositories
             return recipeIngredientEntities.AsQueryable();
         }
 
+        public IQueryable<RecipeIngredient> GetRecipeIngredientsByRecipeId(int id)
+        {
+            return recipeIngredientEntities
+                .Where(ingredient => ingredient.RecipeId == id)
+                .AsQueryable();
+        }
+
         public async Task<IngredientDetails> UpdateIngredient(IngredientDetails ingredient)
         {
             ingredientEntities.Update(ingredient);

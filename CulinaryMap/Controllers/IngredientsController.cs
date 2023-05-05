@@ -15,7 +15,7 @@ namespace CulinaryMap.Controllers
             this.ingredientService = ingredientService;
         }
 
-        [HttpGet("By Id")]
+        [HttpGet("ById")]
         public async Task<IActionResult> GetIngredientById(int id)
         {
             try
@@ -33,12 +33,48 @@ namespace CulinaryMap.Controllers
             }
         }
 
+        [HttpGet("ForRecipeById")]
+        public async Task<IActionResult> GetRecipeIngredientById(int id)
+        {
+            try
+            {
+                var response = await ingredientService.GetRecipeIngredient(id);
+                if (response == null)
+                {
+                    return BadRequest();
+                }
+                return Ok(response);
+            }
+            catch (Exception ex)
+            {
+                return BadRequest(ex.Message);
+            }
+        }
+
         [HttpGet("All")]
-        public async Task<IActionResult> GetAllIngredients()
+        public ActionResult GetAllIngredients()
         {
             try
             {
                 var response = ingredientService.GetIngredients();
+                if (response == null)
+                {
+                    return BadRequest();
+                }
+                return Ok(response);
+            }
+            catch (Exception ex)
+            {
+                return BadRequest(ex.Message);
+            }
+        }
+
+        [HttpGet("AllForRecipe")]
+        public ActionResult GetAllRecipeIngredients()
+        {
+            try
+            {
+                var response = ingredientService.GetRecipeIngredients();
                 if (response == null)
                 {
                     return BadRequest();
@@ -69,6 +105,24 @@ namespace CulinaryMap.Controllers
             }
         }
 
+        [HttpPost("ForRecipe")]
+        public async Task<IActionResult> CreateRecipeIngredient(RecipeIngredientModel model)
+        {
+            try
+            {
+                var response = await ingredientService.CreateRecipeIngredient(model);
+                if (response == null)
+                {
+                    return BadRequest();
+                }
+                return Ok(response);
+            }
+            catch (Exception ex)
+            {
+                return BadRequest(ex.Message);
+            }
+        }
+
         [HttpPut]
         public async Task<IActionResult> UpdateIngredient(UpdateIngredientModel model)
         {
@@ -87,12 +141,44 @@ namespace CulinaryMap.Controllers
             }
         }
 
+        [HttpPut("ForRecipe")]
+        public async Task<IActionResult> UpdateRecipeIngredient(UpdateRecipeIngredientModel model)
+        {
+            try
+            {
+                var response = await ingredientService.UpdateRecipeIngredient(model);
+                if (response == null)
+                {
+                    return BadRequest();
+                }
+                return Ok(response);
+            }
+            catch (Exception ex)
+            {
+                return BadRequest(ex.Message);
+            }
+        }
+
         [HttpDelete]
-        public async Task<IActionResult> CreateIngredient(int id)
+        public IActionResult DeleteIngredient(int id)
         {
             try
             {
                 ingredientService.DeleteIngredient(id);
+                return Ok();
+            }
+            catch (Exception ex)
+            {
+                return BadRequest(ex.Message);
+            }
+        }
+
+        [HttpDelete("ForRecipe")]
+        public IActionResult DeleteRecipeIngredient(int id)
+        {
+            try
+            {
+                ingredientService.DeleteRecipeIngredient(id);
                 return Ok();
             }
             catch (Exception ex)

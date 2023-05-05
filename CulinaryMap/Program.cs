@@ -115,6 +115,9 @@ builder.Services.AddAutoMapper(Assembly.GetExecutingAssembly());
 builder.Services.AddTransient<IIdentityService, IdentityService>();
 builder.Services.AddTransient<IIngredientService, IngredientService>();
 builder.Services.AddTransient<IIngredientRepository, IngredientRepository>();
+builder.Services.AddTransient<IRecipeRepository, RecipeRepository>();
+builder.Services.AddTransient<IRecipeService, RecipeService>();
+builder.Services.AddTransient<IRegionRepository, RegionRepository>();
 
 
 var app = builder.Build();

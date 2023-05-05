@@ -14,6 +14,7 @@ namespace CulinaryMap.Repositories.Interfaces
         Task<RecipeIngredient> UpdateRecipeIngredient(RecipeIngredient ingredient);
         void DeleteRecipeIngredient(int id);
         IQueryable<RecipeIngredient> GetRecipeIngredients();
+        IQueryable<RecipeIngredient> GetRecipeIngredientsByRecipeId(int id);
         Task<RecipeIngredient> GetRecipeIngredientById(int id);
     }
 }
