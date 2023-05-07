@@ -110,6 +110,23 @@ builder.Services.AddAuthorization(opt =>
 
 });
 
+builder.Services.AddCors(options =>
+{
+    options.AddPolicy(name: "_allowSpecificOrigins",
+        builder =>
+        {
+            builder
+            .WithOrigins("localhost:4200",
+            "http://localhost:4200",
+            "https://localhost:4200",
+            "localhost:4200/",
+            "http://localhost:4200/",
+            "https://localhost:4200/")
+            .AllowAnyMethod()
+            .AllowAnyHeader();
+        });
+});
+
 builder.Services.AddAutoMapper(Assembly.GetExecutingAssembly());
 
 builder.Services.AddTransient<IIdentityService, IdentityService>();
@@ -130,8 +147,11 @@ if (app.Environment.IsDevelopment())
 }
 
 app.UseHttpsRedirection();
+app.UseRouting();
+app.UseCors("_allowSpecificOrigins");
 
 app.UseAuthorization();
+app.UseAuthentication();
 
 app.MapControllers();
 
