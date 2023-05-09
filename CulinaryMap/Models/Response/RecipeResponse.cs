@@ -1,4 +1,5 @@
 ﻿using CulinaryMap.Controllers;
+using CulinaryMap.Entities;
 
 namespace CulinaryMap.Models.Response
 {
@@ -15,5 +16,6 @@ namespace CulinaryMap.Models.Response
         public string Type { get; set; }
         public string? PrepTime { get; set; }
         public List<RecipeIngredientResponseModel> Ingredients { get; set; }
+        public List<string> Images { get; set; }
     }
 }

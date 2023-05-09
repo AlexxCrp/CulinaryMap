@@ -13,5 +13,6 @@
         public string Type { get; set; }
         public string? PrepTime { get; set; }
         public virtual ICollection<RecipeIngredient> RecipeIngredients { get; set; }
+        public virtual ICollection<Image> Images { get; set; }
     }
 }

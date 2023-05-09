@@ -13,13 +13,15 @@ namespace CulinaryMap.Services
         private readonly IIngredientRepository ingredientRepository;
         private readonly IRecipeRepository recipeRepository;
         private readonly IRegionRepository regionRepository;
+        private readonly IImageRepository imageRepository;
 
-        public RecipeService(IMapper mapper, IIngredientRepository ingredientRepository, IRecipeRepository recipeRepository, IRegionRepository regionRepository)
+        public RecipeService(IMapper mapper, IIngredientRepository ingredientRepository, IRecipeRepository recipeRepository, IRegionRepository regionRepository, IImageRepository imageRepository)
         {
             this.mapper = mapper;
             this.ingredientRepository = ingredientRepository;
             this.recipeRepository = recipeRepository;
             this.regionRepository = regionRepository;
+            this.imageRepository = imageRepository;
         }
 
         public async Task<Recipe> CreateRecipe(RecipeModel recipeModel)
@@ -70,6 +72,11 @@ namespace CulinaryMap.Services
             List<Region> regions = regionRepository.GetRegions().ToList();
             response.Region = regions.FirstOrDefault(r => r.Id == recipe.RegionId).Name;
 
+            List<Image> images = imageRepository.GetImages().Where(image => image.RecipeId == response.Id).ToList();
+            List<string> imagesLinks = new List<string>();
+            foreach (Image image in images) { imagesLinks.Add(image.Source); }
+            response.Images = imagesLinks;
+
             return response;
         }
 
@@ -78,6 +85,8 @@ namespace CulinaryMap.Services
             List<Recipe> recipes = recipeRepository.GetRecipes().ToList();
             List<RecipeResponse> response = new List<RecipeResponse>();
             List<Region> regions = regionRepository.GetRegions().ToList();
+            List<Image> images = imageRepository.GetImages().ToList();
+
 
             foreach (var recipe in recipes)
             {
@@ -110,6 +119,10 @@ namespace CulinaryMap.Services
                 }
                 currentRecipe.Region = regions.FirstOrDefault(r => r.Id == recipe.RegionId).Name;
                 currentRecipe.Ingredients = recipeIngredientResponseModels;
+                var currentImages = images.Where(image => image.RecipeId == currentRecipe.Id).ToList();
+                List<string> imagesLinks = new List<string>();
+                foreach (var image in currentImages) { imagesLinks.Add(image.Source); }
+                currentRecipe.Images = imagesLinks;
                 response.Add(currentRecipe);
             }
             

@@ -1,0 +1,29 @@
+.dropdownButton1{
+  background-color: #F2DA63;
+  color: black;
+}
+
+.dropdownButton2{
+  background-color: #D9910B;
+  color: black;
+
+}
+
+.dropdownButton{
+  background-color: #F2B90C;
+  color: black;
+
+}
+
+.searchForm{
+  height: 3em;
+  width: 28em;
+}
+
+.navbarColor{
+  background-color: #F2DA63;
+}
+
+.my-button:not(:disabled):not(:disabled):active {
+  background-color: #D9910B;
+}

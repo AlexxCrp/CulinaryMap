@@ -13,6 +13,7 @@ namespace CulinaryMap.Entities
         public DbSet<IngredientDetails> IngredientDetails { get; init; }
         public DbSet<RecipeIngredient> RecipeIngredients { get; init; }
         public DbSet<Region> Regions { get; init; }
+        public DbSet<Image> Images { get; init; }
 
 
         protected override void OnModelCreating(ModelBuilder builder)
@@ -23,6 +24,11 @@ namespace CulinaryMap.Entities
                 .HasOne(recipe => recipe.Region)
                 .WithMany(region => region.Recipes)
                 .HasForeignKey(recipe => recipe.RegionId);
+
+            builder.Entity<Image>()
+                .HasOne(image => image.Recipe)
+                .WithMany(recipe => recipe.Images)
+                .HasForeignKey(image => image.RecipeId);
 
             builder.Entity<RecipeIngredient>()
                 .HasOne(recipeIngredient => recipeIngredient.Recipe)
@@ -38,9 +44,560 @@ namespace CulinaryMap.Entities
             builder.Entity<Recipe>().HasData(GetSeedRecipes());
             builder.Entity<RecipeIngredient>().HasData(GetSeedRecipeIngredients());
             builder.Entity<IngredientDetails>().HasData(GetSeedIngredientDetails());
+            builder.Entity<Image>().HasData(GetSeedImages());
+
 
         }
 
+        private Image[] GetSeedImages()
+        {
+            int id = 1;
+            int nextId() => id++;
+
+            return new[]
+            {
+                new Image
+                {
+                    Id = nextId(),
+                    RecipeId = 1,
+                    Source = "https://divainbucatarie.ro/wp-content/uploads/2013/02/CIORBA-DE-FASOLE-CU-AFUMATURA-SI-TARHON-4.jpg"
+                },
+                new Image
+                {
+                    Id = nextId(),
+                    RecipeId = 1,
+                    Source = "http://www.gradinamea.ro/_files/Image/articole/5/ciorba%20ardeleneasca%20de%20fasole%20boabe.jpg"
+                },
+                new Image
+                {
+                    Id = nextId(),
+                    RecipeId = 2,
+                    Source = "https://divainbucatarie.ro/wp-content/uploads/2011/04/ciorba-de-miel.jpg\r\n"
+                },
+                new Image
+                {
+                    Id = nextId(),
+                    RecipeId = 2,
+                    Source = "https://madeincluj.ro/wp-content/uploads/2020/04/Ciorba-de-miel-ardeleneasca.jpeg"
+                },
+                new Image
+                {
+                    Id = nextId(),
+                    RecipeId = 3,
+                    Source = "https://divainbucatarie.ro/wp-content/uploads/2010/08/supa-de-mazare1.jpg"
+                },
+                new Image
+                {
+                    Id = nextId(),
+                    RecipeId = 3,
+                    Source = "https://www.lauralaurentiu.ro/wp-content/uploads/2012/08/supa-de-mazare-cu-galuste-reteta-ardeleneasca-supa-de-mazare-reteta-laura-laurentiu.jpg"
+                },
+                new Image
+                {
+                    Id = nextId(),
+                    RecipeId = 4,
+                    Source = "https://divainbucatarie.ro/wp-content/uploads/2011/10/varza-a-la-cluj.jpg"
+                },
+                new Image
+                {
+                    Id = nextId(),
+                    RecipeId = 4,
+                    Source = "https://divainbucatarie.ro/wp-content/uploads/2011/10/varza-a-la-cluj-01.jpg"
+                },
+                new Image
+                {
+                    Id = nextId(),
+                    RecipeId = 5,
+                    Source = "https://thumbor.unica.ro/unsafe/700x536/smart/filters:format(webp):contrast(8):quality(75)/https://retete.unica.ro/wp-content/uploads/2014/10/langosi2-e1516973451620.jpg"
+                },
+                new Image
+                {
+                    Id = nextId(),
+                    RecipeId = 5,
+                    Source = "https://thumbor.unica.ro/unsafe/800x0/smart/filters:contrast(8):quality(75)/http://retete.unica.ro/wp-content/uploads/2018/01/langosi-cu-diferite-umpluturi-1024x683.jpg"
+                },
+                new Image
+                {
+                    Id = nextId(),
+                    RecipeId = 6,
+                    Source = "https://thumbor.unica.ro/unsafe/700x536/smart/filters:format(webp):contrast(8):quality(75)/https://retete.unica.ro/wp-content/uploads/2017/11/ciorba-de-burta-ardeleneasca-e1511286039947.jpg"
+                },
+                new Image
+                {
+                    Id = nextId(),
+                    RecipeId = 6,
+                    Source = "https://img-global.cpcdn.com/recipes/c5df8471684618d9/1360x964cq70/ciorba-de-burta-fotografie-re%C8%9Beta.webp"
+                },
+                new Image
+                {
+                    Id = nextId(),
+                    RecipeId = 7,
+                    Source = "https://thumbor.unica.ro/unsafe/700x536/smart/filters:format(webp):contrast(8):quality(75)/https://retete.unica.ro/wp-content/uploads/2010/12/cozo-ardelenesc-colaj-e1481047445166.jpg"
+                },
+                new Image
+                {
+                    Id = nextId(),
+                    RecipeId = 7,
+                    Source = "https://img.spynews.ro/?u=https%3A%2F%2Fspynews.ro%2Fuploads%2Fmodules%2Fnews%2F0%2F2022%2F4%2F12%2F276417%2Fmedia146105652769019000.jpg&w=700"
+                },
+                new Image
+                {
+                    Id = nextId(),
+                    RecipeId = 8,
+                    Source = "https://thumbor.unica.ro/unsafe/700x536/smart/filters:format(webp):contrast(8):quality(75)/https://retete.unica.ro/wp-content/uploads/2010/12/shutterstock_7595512.jpg"
+                },
+                new Image
+                {
+                    Id = nextId(),
+                    RecipeId = 8,
+                    Source = "https://cdn.temananc.ro/tm/f/864x514/b8egaxte/jkfrj7a.jpg"
+                },
+                new Image
+                {
+                    Id = nextId(),
+                    RecipeId = 9,
+                    Source = "https://lh3.googleusercontent.com/38hUynHD5xJYMyK-BLIi-F1anSQZv7SUqeioEqkLxfK9_NgH_OZpgNlyQDHeSdM_Uxr3BN6v979t6I6fWXyQPFEiqIJU-b3ze8g9yDA3DKg3VqWFoUywOOOkzY9FZBkOWRzhkqga"
+                },
+                new Image
+                {
+                    Id = nextId(),
+                    RecipeId = 9,
+                    Source = "https://jamilacuisine.ro/wp-content/uploads/2021/07/Ghiveci-de-legume-ca-la-bunica-696x392.jpg.webp"
+                },
+                new Image
+                {
+                    Id = nextId(),
+                    RecipeId = 10,
+                    Source = "https://thumbor.unica.ro/unsafe/700x536/smart/filters:format(webp):contrast(8):quality(75)/https://retete.unica.ro/wp-content/uploads/2015/06/shutterstock_133342199-e1435664898337.jpg"
+                },
+                new Image
+                {
+                    Id = nextId(),
+                    RecipeId = 10,
+                    Source = "https://retete-cochete.ro/wp-content/uploads/2015/01/IMG_2667.jpg"
+                },
+                new Image
+                {
+                    Id = nextId(),
+                    RecipeId = 11,
+                    Source = "https://thumbor.unica.ro/unsafe/700x536/smart/filters:format(webp):contrast(8):quality(75)/https://retete.unica.ro/wp-content/uploads/2010/11/shutterstock_52717264.jpg"
+                },
+                new Image
+                {
+                    Id = nextId(),
+                    RecipeId = 11,
+                    Source = "http://acasalaromani.ro/wp-content/uploads/2017/08/supa-banateana-k-1021x1024.jpg"
+                },
+                new Image
+                {
+                    Id = nextId(),
+                    RecipeId = 12,
+                    Source = "http://www.skytrip.ro/images/retete/400x230/471.jpg"
+                },
+                new Image
+                {
+                    Id = nextId(),
+                    RecipeId = 12,
+                    Source = "https://ghidulbanatului.ro/wp-content/uploads/2020/10/cepe-umplute-caransebes-750x460.jpg"
+                },
+                new Image
+                {
+                    Id = nextId(),
+                    RecipeId = 13,
+                    Source = "https://www.lauralaurentiu.ro/wp-content/uploads/2011/10/gomboti-galuste-knedle-cu-prune-sectiune-reteta-galuste-cu-prune-pas-cu-pas-lauralaurentiu.jpg"
+                },
+                new Image
+                {
+                    Id = nextId(),
+                    RecipeId = 13,
+                    Source = "https://www.gustos.ro/img.php?u=https%3A%2F%2Fwww.gustos.ro%2Fuploads%2Fmodules%2Fnews%2F0%2F2010%2F8%2F14%2F41236%2Fprune_024.jpg&w=800"
+                },
+                new Image
+                {
+                    Id = nextId(),
+                    RecipeId = 14,
+                    Source = "https://divainbucatarie.ro/wp-content/uploads/2011/10/ciorba-radauteana.jpg"
+                },
+                new Image
+                {
+                    Id = nextId(),
+                    RecipeId = 14,
+                    Source = "https://divainbucatarie.ro/wp-content/uploads/2011/10/ciorba-radauteana-reteta-diva-in-bucatarie-p.jpg"
+                },
+                new Image
+                {
+                    Id = nextId(),
+                    RecipeId = 15,
+                    Source = "https://divainbucatarie.ro/wp-content/uploads/2012/04/bors-de-pui-cu-legume.jpg"
+                },
+                new Image
+                {
+                    Id = nextId(),
+                    RecipeId = 15,
+                    Source = "https://pofta-buna.com/wp-content/uploads/2019/10/Ciorba-de-pui-bors-de-pui-cu-taitei-de-casa-reteta-moldoveneasca-gina-bradea-1-700x525.jpg"
+                },
+                new Image
+                {
+                    Id = nextId(),
+                    RecipeId = 16,
+                    Source = "https://divainbucatarie.ro/wp-content/uploads/2011/03/mucenici-moldovenesti-0.jpg"
+                },
+                new Image
+                {
+                    Id = nextId(),
+                    RecipeId = 16,
+                    Source = "https://www.bucatariamamei.ro/wp-content/uploads/2021/03/5clarendon-Mucenici-Moldovenesti-cu-Miere-si-Nuca-696x392.png"
+                },
+                new Image
+                {
+                    Id = nextId(),
+                    RecipeId = 17,
+                    Source = "https://www.bucovinacazare.ro/wp-content/uploads/2018/07/reteta_de_balmos_ciobanesc_autentic_bucovina.jpg"
+                },
+                new Image
+                {
+                    Id = nextId(),
+                    RecipeId = 17,
+                    Source = "https://media.dcnews.ro/image/202002/full/balmos-bucovina_73780900.jpg"
+                },
+                new Image
+                {
+                    Id = nextId(),
+                    RecipeId = 18,
+                    Source = "https://thumbor.unica.ro/unsafe/700x536/smart/filters:format(webp):contrast(8):quality(75)/https://retete.unica.ro/wp-content/uploads/2015/07/shutterstock_235905862-e1435835695715.jpg"
+                },
+                new Image
+                {
+                    Id = nextId(),
+                    RecipeId = 18,
+                    Source = "https://pe-zona.ro/wp-content/uploads/2022/06/alivenci.jpg"
+                },
+                new Image
+                {
+                    Id = nextId(),
+                    RecipeId = 19,
+                    Source = "https://dulciurifeldefel.ro/wp-content/uploads/2018/11/placinte-poale-in-brau-5.jpg"
+                },
+                new Image
+                {
+                    Id = nextId(),
+                    RecipeId = 19,
+                    Source = "https://retete-culinare-cu-dana-valery.ro/cdn/recipes/poale-2.jpeg"
+                },
+                new Image
+                {
+                    Id = nextId(),
+                    RecipeId = 20,
+                    Source = "https://jamilacuisine.ro/wp-content/uploads/2022/03/Parjoale-moldovenesti-500x500.jpg"
+                },
+                new Image
+                {
+                    Id = nextId(),
+                    RecipeId = 20,
+                    Source = "https://prajituricisialtele.ro/wp-content/uploads/2020/06/parjoale-moldovenesti.jpg"
+                },
+                new Image
+                {
+                    Id = nextId(),
+                    RecipeId = 21,
+                    Source = "https://thumbor.unica.ro/unsafe/700x536/smart/filters:format(webp):contrast(8):quality(75)/https://retete.unica.ro/wp-content/uploads/2017/03/Muncenici-muntene%C8%99ti-cu-nuc%C4%83.jpg"
+                },
+                new Image
+                {
+                    Id = nextId(),
+                    RecipeId = 21,
+                    Source = "https://www.teoskitchen.ro/wp-content/uploads/2016/03/mucenici-muntenesti-1-520x344.jpg"
+                },
+                new Image
+                {
+                    Id = nextId(),
+                    RecipeId = 22,
+                    Source = "https://thumbor.unica.ro/unsafe/700x536/smart/filters:format(webp):contrast(8):quality(75)/https://retete.unica.ro/wp-content/uploads/2014/07/R%C4%83citur%C4%83-munteneasc%C4%83.jpg"
+                },
+                new Image
+                {
+                    Id = nextId(),
+                    RecipeId = 22,
+                    Source = "https://www.lauralaurentiu.ro/wp-content/uploads/2019/03/piftie-de-porc-piftii-de-porc-racitura-de-porc-racituri-de-porc-reteta-laura-laurentiu-960x640.jpg"
+                },
+                new Image
+                {
+                    Id = nextId(),
+                    RecipeId = 23,
+                    Source = "https://jamilacuisine.ro/wp-content/uploads/2017/11/Taci-si-inghite-Mamaliga-in-straturi.jpg.webp"
+                },
+                new Image
+                {
+                    Id = nextId(),
+                    RecipeId = 23,
+                    Source = "https://blogger.googleusercontent.com/img/a/AVvXsEi1tIiZ23ncK_L1rkXXuqSL2fKxL9FFDpmKHP2bhAs6cNboaqNYnt93kbDROBxym5PV1aId0VztI0kqKxJ3Aa3W1xm56LoWbOCOdV7v4R6u4SUW7O3fOFCNZY5_rrht6jULvAM2kOlTEi3_93qBT8VhSyOBAe9gMk9T1NtlO8SvvTF4K2KANzn0SbiY=w640-h427"
+                },
+                new Image
+                {
+                    Id = nextId(),
+                    RecipeId = 24,
+                    Source = "https://luckycake.ro/wp-content/uploads/2015/01/DSC_1911.jpg"
+                },
+                new Image
+                {
+                    Id = nextId(),
+                    RecipeId = 24,
+                    Source = "https://www.lauralaurentiu.ro/wp-content/uploads/2012/10/papanasi-cu-branza-fierti-reteta-pas-cu-pas-cum-se-fac-papanasi-fierti-960x640.jpg"
+                },
+                new Image
+                {
+                    Id = nextId(),
+                    RecipeId = 25,
+                    Source = "https://pofta-buna.com/wp-content/uploads/2015/11/Ciorba-de-fasole-in-paine-pofta-buna-cu-gina-bradea-2.jpg"
+                },
+                new Image
+                {
+                    Id = nextId(),
+                    RecipeId = 25,
+                    Source = "https://www.reteteculinare.ro/img.php?u=https%3A%2F%2Fwww.reteteculinare.ro%2Fuploads%2Fmodules%2Fnews%2F0%2F2019%2F2%2F17%2F11176%2Ffdb_1550413511_dscf7010.jpg&w=800&v=2"
+                },
+                new Image
+                {
+                    Id = nextId(),
+                    RecipeId = 26,
+                    Source = "https://raftulbunicii.ro/wp-content/uploads/2018/10/17-copy-4-1.png"
+                },
+                new Image
+                {
+                    Id = nextId(),
+                    RecipeId = 26,
+                    Source = "https://retete.unica.ro/wp-content/uploads/2010/08/specialitate-munteneasca.jpg"
+                },
+                new Image
+                {
+                    Id = nextId(),
+                    RecipeId = 27,
+                    Source = "https://www.retetepractice.ro/wp-content/uploads/2015/08/bors-cu-leurda.png"
+                },
+                new Image
+                {
+                    Id = nextId(),
+                    RecipeId = 27,
+                    Source = "https://4.bp.blogspot.com/-FcxOsVESQZw/WK1YF5AakBI/AAAAAAAAN0M/f5DDeC52OvouumB0821y5Er_qGAW2OelwCLcB/s1600/10.jpg"
+                },
+                new Image
+                {
+                    Id = nextId(),
+                    RecipeId = 28,
+                    Source = "https://www.papamond.ro/wp-content/uploads/2015/03/Mamaliga-toponita-Papamond-5.jpg"
+                },
+                new Image
+                {
+                    Id = nextId(),
+                    RecipeId = 28,
+                    Source = "https://retete.unica.ro/wp-content/uploads/2015/10/26052325_m.jpg"
+                },
+                new Image
+                {
+                    Id = nextId(),
+                    RecipeId = 29,
+                    Source = "https://static.alinacuisine.ro/uploads/2015/08/cornuri-extra-pufoase-cu-gem-de-zmeura-featured-image-638x423.jpg"
+                },
+                new Image
+                {
+                    Id = nextId(),
+                    RecipeId = 29,
+                    Source = "https://i0.wp.com/zicemami.ro/wp-content/uploads/2021/02/77BAD4A9-FFC3-46C0-9C73-32B4D9C4CB23.jpeg?resize=750%2C748&ssl=1"
+                },
+                new Image
+                {
+                    Id = nextId(),
+                    RecipeId = 30,
+                    Source = "https://retete-culinare-cu-dana-valery.ro/cdn/recipes/ciorba-de-gulii-cu-smantana-si-marar-reteta-simpla.jpg"
+                },
+                new Image
+                {
+                    Id = nextId(),
+                    RecipeId = 30,
+                    Source = "https://teoskitchen.ro/wp-content/uploads/2021/08/ciorba-de-gulii-4.jpg"
+                },
+                new Image
+                {
+                    Id = nextId(),
+                    RecipeId = 31,
+                    Source = "https://traditiiculinareromanesti.files.wordpress.com/2013/09/121.jpg"
+                },
+                new Image
+                {
+                    Id = nextId(),
+                    RecipeId = 31,
+                    Source = "https://www.cefacemimi.ro/wp-content/uploads/2013/10/7-3.jpg"
+                },
+                new Image
+                {
+                    Id = nextId(),
+                    RecipeId = 32,
+                    Source = "https://savoriurbane.com/wp-content/uploads/2019/01/Sup%C4%83-crem%C4%83-de-praz-cu-cartofi-%C8%99i-sm%C3%A2nt%C3%A2n%C4%83-fin%C4%83-%C8%99i-cremoas%C4%83-reteta-savori-urbane.jpg"
+                },
+                new Image
+                {
+                    Id = nextId(),
+                    RecipeId = 32,
+                    Source = "https://lecturisiarome.ro/wp-content/uploads/2020/03/supa-de-praz.jpg"
+                },
+                new Image
+                {
+                    Id = nextId(),
+                    RecipeId = 33,
+                    Source = "https://pofta-buna.com/wp-content/uploads/2021/02/ciorba-de-praz-reteta-pas-cu-pas-2.jpg"
+                },
+                new Image
+                {
+                    Id = nextId(),
+                    RecipeId = 33,
+                    Source = "https://retete.unica.ro/wp-content/uploads/2013/10/ciorba-pray.jpg"
+                },
+                new Image
+                {
+                    Id = nextId(),
+                    RecipeId = 34,
+                    Source = "https://lh6.googleusercontent.com/KEBzOl9hAc2pfh_i_LPXYPNBBk-EQRi-h0VK1o5AEIAWEwxWP5nFmHOy7MUuL7JEHf7_98D-YwXt5qxk_XNwwOb9NGg1a4-WhX2-ouj2OI2240gQEd040S-ryfXInf5TpW0zBkb0"
+                },
+                new Image
+                {
+                    Id = nextId(),
+                    RecipeId = 34,
+                    Source = "https://retete.unica.ro/wp-content/uploads/2013/10/tarta-praz-morcovi.jpg"
+                },
+                new Image
+                {
+                    Id = nextId(),
+                    RecipeId = 35,
+                    Source = "https://jamilacuisine.ro/wp-content/uploads/2015/10/Saramura-de-pui-500x375.jpg"
+                },
+                new Image
+                {
+                    Id = nextId(),
+                    RecipeId = 35,
+                    Source = "https://4.bp.blogspot.com/-wAga6JltCks/V_CxG-fyb8I/AAAAAAAA0I8/kE6VkUTWlZsNCKhorc5MrFQkSSjATG_0QCLcB/s1600/saramura-de-pui.JPG"
+                },
+                new Image
+                {
+                    Id = nextId(),
+                    RecipeId = 36,
+                    Source = "https://i2.wp.com/www.deliciiraw.ro/wp-content/uploads/2017/03/turta-de-malai-olteneasca.jpg?fit=2165%2C1491&ssl=1"
+                },
+                new Image
+                {
+                    Id = nextId(),
+                    RecipeId = 36,
+                    Source = "https://www.exquis.ro/wp-content/uploads/2017/09/c57c7f37054602e4a26f50fd45d732a2.jpg"
+                },
+                new Image
+                {
+                    Id = nextId(),
+                    RecipeId = 37,
+                    Source = "https://www.gustos.ro/img.php?u=https%3A%2F%2Fwww.gustos.ro%2Fuploads%2Fmodules%2Fnews%2F0%2F2010%2F7%2F13%2F40893%2Fdscf3568.jpg&w=800"
+                },
+                new Image
+                {
+                    Id = nextId(),
+                    RecipeId = 37,
+                    Source = "https://cdn.temananc.ro/tm/f/864x514/b8egaxte/3dt7l3k.jpg"
+                },
+                new Image
+                {
+                    Id = nextId(),
+                    RecipeId = 38,
+                    Source = "https://www.petitchef.ro/imgupl/recipe/placinta-dobrogeana--43927p53569.jpg"
+                },
+                new Image
+                {
+                    Id = nextId(),
+                    RecipeId = 38,
+                    Source = "https://suntdelicioase.ro/wp-content/uploads/2021/12/placinta-DOBROGEANA-2.jpg"
+                },
+                new Image
+                {
+                    Id = nextId(),
+                    RecipeId = 39,
+                    Source = "https://louloucuisine.ro/wp-content/uploads/2017/04/peste-alb-sos-rosii.jpg"
+                },
+                new Image
+                {
+                    Id = nextId(),
+                    RecipeId = 39,
+                    Source = "https://1.bp.blogspot.com/-mgkoxJLQU5Q/Xywnbum9WLI/AAAAAAAAEDk/pTAZDlMMKtkriRuD5DxwmuEgr_9m2EULwCLcBGAsYHQ/s1600/peste-la-cuptor-cu-sos-de-rosii.JPG"
+                },
+                new Image
+                {
+                    Id = nextId(),
+                    RecipeId = 40,
+                    Source = "https://i.ytimg.com/vi/dJmzQfwNPAU/maxresdefault.jpg"
+                },
+                new Image
+                {
+                    Id = nextId(),
+                    RecipeId = 40,
+                    Source = "https://www.lauralaurentiu.ro/wp-content/uploads/2019/03/saramura-de-crap-reteta-saramura-de-peste-reteta-laura-laurentiu.jpg"
+                },
+                new Image
+                {
+                    Id = nextId(),
+                    RecipeId = 41,
+                    Source = "https://www.gustos.ro/uploads/modules/news/0/2013/12/3/49602/dsc00483.jpg"
+                },
+                new Image
+                {
+                    Id = nextId(),
+                    RecipeId = 41,
+                    Source = "https://retete.unica.ro/wp-content/uploads/2013/10/bors-macrou.jpg"
+                },
+                new Image
+                {
+                    Id = nextId(),
+                    RecipeId = 42,
+                    Source = "https://simonacallas.com/wp-content/uploads/2015/06/Cherdele-dobrogene.jpg"
+                },
+                new Image
+                {
+                    Id = nextId(),
+                    RecipeId = 42,
+                    Source = "https://i.pinimg.com/originals/e0/c9/0c/e0c90c1fd70e7f030aa892b2b0ab8a4f.jpg"
+                },
+                new Image
+                {
+                    Id = nextId(),
+                    RecipeId = 43,
+                    Source = "https://teoskitchen.ro/wp-content/uploads/2020/03/clatite-cu-urda-si-marar-1.jpg"
+                },
+                new Image
+                {
+                    Id = nextId(),
+                    RecipeId = 43,
+                    Source = "https://www.bucataras.ro/uploads/modules/news/79887/656x440_clatite-cu-urda-si-marar-463349.jpg"
+                },
+                new Image
+                {
+                    Id = nextId(),
+                    RecipeId = 44,
+                    Source = "https://retetefeldefel.ro/wp-content/uploads/2019/10/coltunasi-cu-carne-tocata-si-legume-4-1024x684.jpg"
+                },
+                new Image
+                {
+                    Id = nextId(),
+                    RecipeId = 44,
+                    Source = "https://retete.unica.ro/wp-content/uploads/2010/10/shutterstock_7626319.jpg"
+                },
+                new Image
+                {
+                    Id = nextId(),
+                    RecipeId = 45,
+                    Source = "https://acasalaromani.ro/wp-content/uploads/2017/04/Supa-cu-porumb-si-cascaval.jpg"
+                },
+                new Image
+                {
+                    Id = nextId(),
+                    RecipeId = 45,
+                    Source = "https://chefnicolaietomescu.ro/wp-content/uploads/2021/07/03FDF13F-8D9C-4676-B7FF-44E6A02B6F2A.jpeg"
+                }
+            };
+        }
         private Recipe[] GetSeedRecipes()
         {
             int id = 1;
@@ -262,7 +819,7 @@ namespace CulinaryMap.Entities
                     PrepMode = "Laptele se pune la fiert cu un praf de sare., amestecând din când în când să nu se lipească. Atunci când dă în clocot, adăugați mălaiul, cernut treptat, ca atunci când faceți mămăligă. Amestecați, amestecați, ca să nu se formeze cocoloașe. După 10 minute, dați de pe foc și lăsați la răcit.\r\nÎntre timp, preîncălziți cuptorul. Într-un castron mic, separați ouăle. Într-un bol mediu amestecați brânza cu smântâna și adăugați gălbenușurile. Bateți albușurile cu un vârf de linguriță de sare până se întăresc.\r\nAmestecați terciul de mămăligă cu crema de brânză. Încorporați albușurile, cu mișcări ample. Ungeți o tavă care nu lipește cu unt (sau tapetați-o cu hârtie de copt).  Turnați compoziția și nivelați-o. Dacă doriți, puteți presăra deasupra cașcaval ras.\r\nDați la cuptor pentru 35-40 minute sau până când vedeți că se rumenește apetisant la suprafață. Serviți calde, cu smântână cremoasă deasupra.\r\n",
                     History = "",
                     PrepTime = "65 min",
-                    Type = "Aperitiv"
+                    Type = "Desert"
                 },
                 new Recipe
                 {
