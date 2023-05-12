@@ -12,4 +12,5 @@ export interface FullRecipe{
   type: string;
   prepTime?: string;
   ingredients: FullRecipeIngredient[];
+  images: string[];
 }

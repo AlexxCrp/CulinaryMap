@@ -1,0 +1,109 @@
+<div *ngIf="TipButon === 'Regiune'" class="btn-group m-1">
+  <button class="my-button btn btn-secondary btn-lg dropdownButton" type="button" (click)="emitValues()">
+    Regiune
+  </button>
+  <button type="button" class="my-button btn btn-lg btn-secondary dropdown-toggle dropdown-toggle-split dropdownButton" data-bs-toggle="dropdown" aria-expanded="false">
+    <span class="visually-hidden">Toggle Dropdown</span>
+  </button>
+  <ul class="dropdown-menu">
+    <li>
+      <div class="form-check">
+        <input class="form-check-input" type="checkbox" value="Banat" id="flexCheckReg" (change)="onCheckboxChange()">
+        <label class="form-check-label" for="flexCheckDefault">
+          Banat
+        </label>
+      </div>
+    </li>
+    <li>
+      <div class="form-check">
+        <input class="form-check-input" type="checkbox" value="Crisana" id="flexCheckReg" (change)="onCheckboxChange()">
+        <label class="form-check-label" for="flexCheckDefault">
+          Crisana
+        </label>
+      </div>
+    </li>
+    <li>
+      <div class="form-check">
+        <input class="form-check-input" type="checkbox" value="Moldova" id="flexCheckReg" (change)="onCheckboxChange()">
+        <label class="form-check-label" for="flexCheckDefault">
+          Moldova&Bucovina
+        </label>
+      </div>
+    </li>
+    <li>
+      <div class="form-check">
+        <input class="form-check-input" type="checkbox" value="Muntenia" id="flexCheckReg" (change)="onCheckboxChange()">
+        <label class="form-check-label" for="flexCheckDefault">
+          Muntenia
+        </label>
+      </div>
+    </li>
+    <li>
+      <div class="form-check">
+        <input class="form-check-input" type="checkbox" value="Dobrogea" id="flexCheckReg" (change)="onCheckboxChange()">
+        <label class="form-check-label" for="flexCheckDefault">
+          Dobrogea
+        </label>
+      </div>
+    </li>
+    <li>
+      <div class="form-check">
+        <input class="form-check-input" type="checkbox" value="Maramures" id="flexCheckReg" (change)="onCheckboxChange()">
+        <label class="form-check-label" for="flexCheckDefault">
+          Maramures
+        </label>
+      </div>
+    </li>
+    <li>
+      <div class="form-check">
+        <input class="form-check-input" type="checkbox" value="Transilvania" id="flexCheckReg" (change)="onCheckboxChange()">
+        <label class="form-check-label" for="flexCheckDefault">
+          Transilvania
+        </label>
+      </div>
+    </li>
+    <li>
+      <div class="form-check">
+        <input class="form-check-input" type="checkbox" value="Oltenia" id="flexCheckReg" (change)="onCheckboxChange()">
+        <label class="form-check-label" for="flexCheckDefault">
+          Oltenia
+        </label>
+      </div>
+    </li>
+  </ul>
+</div>
+
+<div class="btn-group m-1" *ngIf="TipButon === 'Tip'">
+  <button class="my-button btn btn-secondary btn-lg dropdownButton" type="button" (click)="emitValues()">
+    Tip
+  </button>
+  <button type="button" class="my-button btn btn-lg btn-secondary dropdown-toggle dropdown-toggle-split dropdownButton" data-bs-toggle="dropdown" aria-expanded="false">
+    <span class="visually-hidden">Toggle Dropdown</span>
+  </button>
+  <ul class="dropdown-menu">
+    <li>
+      <div class="form-check">
+        <input class="form-check-input" type="checkbox" value="Aperitiv" id="flexCheckTip" (change)="onCheckboxChange()">
+        <label class="form-check-label" for="flexCheckDefault">
+          Aperitiv
+        </label>
+      </div>
+    </li>
+    <li>
+      <div class="form-check">
+        <input class="form-check-input" type="checkbox" value="Fel Principal" id="flexCheckTip" (change)="onCheckboxChange()">
+        <label class="form-check-label" for="flexCheckDefault">
+          Fel principal
+        </label>
+      </div>
+    </li>
+    <li>
+      <div class="form-check">
+        <input class="form-check-input" type="checkbox" value="Desert" id="flexCheckTip" (change)="onCheckboxChange()">
+        <label class="form-check-label" for="flexCheckDefault">
+          Desert
+        </label>
+      </div>
+    </li>
+  </ul>
+</div>

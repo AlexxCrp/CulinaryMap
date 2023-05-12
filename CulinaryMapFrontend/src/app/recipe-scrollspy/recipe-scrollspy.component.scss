@@ -1,0 +1,29 @@
+@import '../../styles.scss';
+
+.list-group {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  height: 100%;
+}
+
+.scrollspy-example {
+  position: relative;
+  height: 400px; /* set the desired height */
+  overflow-y: scroll;
+}
+
+.nav-link{
+  color: black;
+  background-color: $main-color;
+  width: 100%;
+  border: 1px solid black;
+}
+
+.nav-link:hover{
+  background-color: $accent-color;
+}
+
+.nav-link.active{
+  background-color: $accent-color;
+}

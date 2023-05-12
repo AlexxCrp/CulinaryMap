@@ -1,0 +1,5 @@
+<form class="d-flex mt-2 searchForm">
+  <div class="input-group">
+		<input placeholder="Cauta o reteta..." id="typeahead-config" type="text" class="form-control" [ngbTypeahead]="search" name = "searchRecipe" (keyup.enter)="emitSelectedRecipe()" />
+  </div>
+</form>
