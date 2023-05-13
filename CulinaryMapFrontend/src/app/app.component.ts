@@ -11,8 +11,11 @@ import { map } from 'rxjs';
 })
 export class AppComponent implements OnInit {
 
-  constructor(public recipeService: RecipeService) {}
   fullRecipes : FullRecipe[] = null;
+
+  constructor(public recipeService: RecipeService) {
+
+  }
 
   ngOnInit(): void {
     this.recipeService.getRecipes().subscribe((result : FullRecipe[]) =>

@@ -1,4 +1,4 @@
-<nav class="navbar bg-body-tertiary navbar-expand navbarColor">
+<nav class="navbar bg-body-tertiary navbar-expand navbarColor h-10">
   <div class="container-fluid d-flex flex-column align-items-center">
     <div class = "d-flex justify-content-center">
       <app-filter-button [TipButon]="TypeRegiune" (checkedValuesButton)="onCheckedValuesChangedButton($event)"></app-filter-button>
@@ -7,5 +7,5 @@
     </div>
   </div>
 </nav>
-<p *ngFor="let filter of filters">{{filter}}</p>
-<p >{{recipe | json}}</p>
+<!-- <p *ngFor="let filter of filters">{{filter}}</p>
+<p >{{recipe | json}}</p> -->

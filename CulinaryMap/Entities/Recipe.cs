@@ -4,8 +4,8 @@
     {
         public int Id { get; set; }
         public int RegionId { get; set; }
-        public int Latitude { get; set; }
-        public int Longitude { get; set; }
+        public double Latitude { get; set; }
+        public double Longitude { get; set; }
         public virtual Region Region { get; set; }
         public string Name { get; set; }
         public string PrepMode { get; set; }

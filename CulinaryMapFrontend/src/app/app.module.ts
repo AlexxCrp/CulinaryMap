@@ -15,6 +15,9 @@ import { HomeWrapperComponent } from './home-wrapper/home-wrapper.component';
 import { RecipePageComponent } from './recipe-page/recipe-page.component';
 import { RecipeCarouselComponent } from './recipe-carousel/recipe-carousel.component';
 import { RecipeScrollspyComponent } from './recipe-scrollspy/recipe-scrollspy.component';
+import { RecipeQuickviewComponent } from './recipe-quickview/recipe-quickview.component';
+import { MainPageComponent } from './main-page/main-page.component';
+import { MapComponent } from './map/map.component';
 
 
 @NgModule({
@@ -26,7 +29,10 @@ import { RecipeScrollspyComponent } from './recipe-scrollspy/recipe-scrollspy.co
     HomeWrapperComponent,
     RecipePageComponent,
     RecipeCarouselComponent,
-    RecipeScrollspyComponent
+    RecipeScrollspyComponent,
+    RecipeQuickviewComponent,
+    MainPageComponent,
+    MapComponent
   ],
   imports: [
     BrowserModule,
