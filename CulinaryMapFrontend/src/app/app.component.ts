@@ -12,6 +12,8 @@ import { map } from 'rxjs';
 export class AppComponent implements OnInit {
 
   fullRecipes : FullRecipe[] = null;
+  filteredRecipe: FullRecipe[]
+  title: any;
 
   constructor(public recipeService: RecipeService) {
 

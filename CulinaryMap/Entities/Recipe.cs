@@ -1,11 +1,16 @@
-﻿namespace CulinaryMap.Entities
+﻿using Microsoft.EntityFrameworkCore.Metadata.Internal;
+using System.ComponentModel.DataAnnotations.Schema;
+
+namespace CulinaryMap.Entities
 {
     public class Recipe
     {
         public int Id { get; set; }
         public int RegionId { get; set; }
-        public double Latitude { get; set; }
-        public double Longitude { get; set; }
+        [Column(TypeName = "decimal(5, 2)")]
+        public decimal Latitude { get; set; }
+        [Column(TypeName = "decimal(5, 2)")]
+        public decimal Longitude { get; set; }
         public virtual Region Region { get; set; }
         public string Name { get; set; }
         public string PrepMode { get; set; }

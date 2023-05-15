@@ -1,4 +1,4 @@
-import { NgModule } from '@angular/core';
+import { Injector, NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { HttpClientModule } from '@angular/common/http';
 import { CommonModule } from '@angular/common';
@@ -45,6 +45,12 @@ import { MapComponent } from './map/map.component';
     RecipeService,
     RecipeCachingService
   ],
-  bootstrap: [AppComponent]
+  bootstrap: [AppComponent],
+  entryComponents:[RecipeQuickviewComponent]
 })
-export class AppModule { }
+export class AppModule {
+  // constructor(private injector: Injector) {
+  //   const PopupElement = createCustomElement(RecipeQuickviewComponent, {injector});
+  //   // Register the custom element with the browser.
+  //   customElements.define('popup-element', PopupElement);
+ }

@@ -4,6 +4,7 @@ using CulinaryMap.Entities;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -11,9 +12,11 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace CulinaryMap.Migrations
 {
     [DbContext(typeof(CulinaryMapDbContext))]
-    partial class CulinaryMapDbContextModelSnapshot : ModelSnapshot
+    [Migration("20230514181340_FixedCoordinates")]
+    partial class FixedCoordinates
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -1297,7 +1300,7 @@ namespace CulinaryMap.Migrations
                             Id = 2,
                             History = "NA",
                             Latitude = 47.13m,
-                            Longitude = 24.50m,
+                            Longitude = 24.5m,
                             Name = "Ciorba Ardeleneasca de miel",
                             PrepMode = "Pentru a pregati ciorba ardeleneasca de miel folosim capul si bucati de carne de la miel.\r\nSpalam si curatam carnea. Pentru inceput o oparim in apa cu otet. Aruncam apa si punem carnea iar la fiert in apa rece cu sare.\r\nAvem grija sa fie acoperita Vom indeparta spuma de cate ori este nevoie.\r\nLegumele le taiem marunt si le calim in ulei, apoi le inabusim cu putina apa.\r\nLe punem la fiert in oala in care fierbem carnea, adaugand si usturoiul, frunza de dafin, frunzele de leustean si boabele de piper. Orezul il vom fierbe separat.\r\nCand este fiarta carnea o scoatem si o alegem de pe oase, portionam bucatile mai mari, apoi le punem inapoi in oala. Adaugam orezul, otet dupa gust (zeama de lamaie sau bors) fierbem 4-5 minute, apoi punem dressingul din faina, galbenusuri si smantana de gatit. Dressingul este diluat in prealabil cu 4-5 polonice de zeama fierbinte si abia dupa aceasta operatiune se pune in oala.\r\nEste important ca dressingul sa ajunga la o temperatura apropiata de a ciorbei, asa ca zeama calda o punem treptat peste smantana cu oua si faina, iar in oala se pune tot treptat, nu se toarna tot lichidul dintr-o singura miscare.\r\nMai lasam sa fiarba  cateva clocote (nu se va branzi pentru ca avem si faina!), saram cat este nevoie si ciorba este gata.\r\n",
                             PrepTime = "NA",
@@ -1333,7 +1336,7 @@ namespace CulinaryMap.Migrations
                             Id = 5,
                             History = "NA",
                             Latitude = 45.88m,
-                            Longitude = 22.90m,
+                            Longitude = 22.9m,
                             Name = "Langosi",
                             PrepMode = "Dizolvă într-un castron drojdia şi amestecă cu apă călduţă, sare şi zahăr.  Adaugă făina şi frământă bine preparatul.\r\nPune aluatul frământat într-un vas uns cu ulei,  acoperă cu un prosop. Lasă la cald, ferit de curent, să crească, pentru aproximativ 30 de minute.\r\nPune ulei la încins într-o tigaie şi desfă cu o lingură, sau cu mâna, bucăţi din aluat crescut.\r\nSe aplatizează (turtesc) bucăţile de aluat și, dacă nu le vrei simple, pune umplutura (de brânză, brânză cu verdeţuri, stafide, fructe, gem, etc.).\r\nLipește marginile, ca într-un plic şi pune în uleiul încins, la prăjit, circa 2 minute pe fiecare parte, până devin aurii.\r\nSe scot langoşile pe șervețele de hârtie şi se lasă la scurs. Fiecare bucățică de langoși se pudrează cu zahăr sau scorţişoară, după gust.\r\n",
                             PrepTime = "NA",
@@ -1381,7 +1384,7 @@ namespace CulinaryMap.Migrations
                             Id = 9,
                             History = "NA",
                             Latitude = 47.02m,
-                            Longitude = 23.90m,
+                            Longitude = 23.9m,
                             Name = "Ghiveci Ardelenesc",
                             PrepMode = "1. Pentru început, se alege fasolea uscată şi se lasă câteva ore să se înmoaie. După ce a stat în apă călduţă, se scoate şi se pune să fiarbă. Se fierbe în câteva ape până se elimină toxinele apoi se scoate în sită să se scurgă.\r\n2. Carnea se taie cubuleţe şi se căleşte în uleiul încins. Se înăbuşe uşor la foc mediu şi se adaugă ceapa şi ardeii tăiaţi cubuleţe.\r\n3. Morcovii, fasolea verde şi cartofii se spală, se curăţă şi se taie cubuleţe. Se adaugă în cratiţa cu carne şi se lasă să fiarbă la foc potrivit.\r\n4. După ce au fiert şi legumele, şi ceapa, se adaugă piureul de roşii şi fasolea fiartă. Ghiveciul se lasă să scadă în cuptor şi se serveşte cu mărar şi cimbru.",
                             PrepTime = "40 min",
@@ -1405,7 +1408,7 @@ namespace CulinaryMap.Migrations
                             Id = 11,
                             History = "NA",
                             Latitude = 45.68m,
-                            Longitude = 21.90m,
+                            Longitude = 21.9m,
                             Name = "Ciorba Banateana",
                             PrepMode = "1. Se lasă fasolea la înmuiat în apă călduţă, timp de 3-4 ore. Se scoate din apă şi se pune să fiarbă în câteva ape, până elimină toxinele.\r\n2. După ce s-a fiert, se scoate din apă şi se lasă în sită să se scurgă. Separat, se curăţă ceapa, ardeii, morcovul şi cartofii. Se taie cubuleţe, ca pentru ciorbă şi se înăbuşe câteva minute în uleiul de floarea-soarelui.\r\n3. Se adaugă aproximativ 2 litri de apă şi se pun să fiarbă la foc mediu, acoperite cu un capac. În acest timp, se taie cârnaţii felii şi se călesc în sucul propriu.\r\n4. După ce au fiert legumele, se adaugă sucul de roşii, sarea, piperul, boiaua iute, se mai lasă să clocotească 10 minute şi se serveşte cu bucăţile de cârnaţi şi pătrunjel proaspăt tocat mărunt.",
                             PrepTime = "40 min",
@@ -1561,7 +1564,7 @@ namespace CulinaryMap.Migrations
                             Id = 24,
                             History = "",
                             Latitude = 44.83m,
-                            Longitude = 24.90m,
+                            Longitude = 24.9m,
                             Name = "Papanasi fierti cu branza de vaci si pesmet",
                             PrepMode = "Pentru ca papanașii fierți să fie gustoși, e important să respecți cantitățile de ingrediente recomandate. Bineînțeles, dacă vrei un rezultat cu un gust desăvârșit, trebuie să pui și un strop de dragoste pe lângă ingredientele folosite.\r\nÎntr-un vas încăpător, amestecă vioi grișul din grâu Raftul Bunicii cu brânza bine scursă înainte, zahărul pudră, un praf de sare, ouăle, dar și coaja de lămâie rasă și zahărul vanilat. După ce amestecul devine omogen, dă-i răgaz jumătate de oră, timp în care acesta va crește de bucurie.\r\nClătește-ți mâinile cu apă rece, ia aluatul și modelează-l în 20 de biluțe aproximativ egale. Lasă-le să se odihnească pe o tavă cât timp pui apa la fiert și pregătești toppingul.\r\nToppingul de pesmet prăjit pentru papanași se prepară foarte rapid. Topește untul într-o tigaie și amestecă ușor. La final, după ce pesmetul capătă o nuanță maro, se adaugă și zahărul și se mai lasă cel mult 3 minute pe foc.\r\nCând apa începe să clocotească, dizolvă în ea sare și apoi adaugă biluțele de aluat, una câte una, în apă. Se lasă focul mai mic și se așteaptă să se ridice la suprafață papanașii. Din acel moment, se mai lasă la fiert maxim 3-4 minute și se scot cu ajutorul unei spumiere.\r\nPapanașii sunt transferați imediat în tigaia cu pesmet proaspăt prăjit. Cu o lingură de lemn, rostogolește-i prin pesmet, astfel încât să fie complet acoperiți de acesta.\r\nSunt gata de servire, îți mai rămâne să-i înnobilezi cu smântână rece și puțină dulceață.\r\n",
                             PrepTime = "40 min",
@@ -1621,7 +1624,7 @@ namespace CulinaryMap.Migrations
                             Id = 29,
                             History = "",
                             Latitude = 46.48m,
-                            Longitude = 21.50m,
+                            Longitude = 21.5m,
                             Name = "Cornuri cu magiun",
                             PrepMode = "Ia un castron mic din bucătărie și freacă drojdia cu 1 lingură de zahăr, până când se lichefiază. Pentru drojdia uscată, folosește 3-4 linguri de lapte cald și 1 lingură de zahăr.\r\nIa un bol încăpător și cerne cu dedicare Făina Superioară 000 Raftul bunicii, peste care adaugă coaja de lămâie fin răzuită, amestecă bine ingredientele, după care toarnă drojdia.\r\nÎntr-un mic bol, bate oul întreg cu 3 dintre gălbenușuri, laolaltă cu zahărul rămas, apoi incorporează treptat extractul de vanilie, sarea și laptele cald. Toarnă această compoziție peste făină.\r\nCu o spatulă sau o lingură de lemn, amestecă bine compoziția, până când făina absoarbe lichidele, iar apoi frământă cu grijă timp de 10 minute, până când vei obține un aluat omogen.\r\nEste momentul să adaugi untul moale, treptat, și să continui frământatul până rezultă un aluat fin și moale. Pune aluatul obținut la odihnit într-un castron, la căldură, și lasă-l așa până când își dublează volumul. Îi va lua în jur de 45 de minute sau 1 oră.\r\nPe blatul de lucru, toarnă puțin ulei și răstoarnă aluatul crescut, pe care apoi îl întinzi cu palmele sau un sucitor, în formă rotundă, de 1 cm grosime.\r\nÎmparte cercul în 12 triunghiuri egale, cu ajutorul unui cuțit cu vârf ascuțit. La baza triunghiurilor, pune în cantitate egală o bilă de magiun. Acum, rulează aluatul de la bază spre vârf, astfel încât magiunul să rămână protejat, la mijloc. Formează cornulețele și așază-le pe o tavă de copt tapetată cu hârtie, cu vârful aluatului dedesubt, pentru a nu se desface în cuptor.\r\nMai lasă cornurile în tavă, pentru a-și mări volumul, iar după aceea unge-le cu gălbenușul de ou rămas, bătut cu 3 linguri de apă.\r\nÎncinge cuptorul la 190 de grade Celsius, așază tava în interiorul acestuia la o înălțime medie, iar apoi redu temperatura la 180 de grade. În 25 de minute, cornurile vor căpăta rumeneala mult dorită.\r\nÎn timpul coacerii, aplică secretul care te va ajuta să obții cornuri bine coapte și crocante: acoperă-le cu o folie de aluminiu sau o coală de hârtie de copt umezită, asta deoarece aluatul dulce se va rumeni mai repede decât se va coace în interior.\r\nLa final, scoate cornurile pe tava, presară-le cu zahăr pudră și adună pofticioșii în jurul mesei, pentru a se răsfăța cu o delicatesă splendidă, culeasă tocmai din Crișana.\r\n",
                             PrepTime = "2 ore",
@@ -1644,7 +1647,7 @@ namespace CulinaryMap.Migrations
                         {
                             Id = 31,
                             History = "",
-                            Latitude = 47.50m,
+                            Latitude = 47.5m,
                             Longitude = 22.16m,
                             Name = "Gimicus",
                             PrepMode = "Slanina sau costita afumata se taie feliute si se prajeste in tigaie (in tipsie din tuci), in ulei Arpis.\r\nCarnatul afumat se taie rondele si se adauga si el peste slaninuta, impreuna cu caltabosul taiat felii.\r\nSe prepara malaiul copt din faina Arpis, pe baza retetei folosite in Banat si Crisana \r\nDupa ce s-a racit malaiul copt, se sfarama peste ingredientele de mai sus si se amesteca totul astfel incat sa absoarba malaiul din grasimea lasata de la prajit, dupa care se poate servi cu muraturi.\r\n",
@@ -1656,7 +1659,7 @@ namespace CulinaryMap.Migrations
                         {
                             Id = 32,
                             History = "",
-                            Latitude = 44.30m,
+                            Latitude = 44.3m,
                             Longitude = 23.82m,
                             Name = "Supa crema de praz",
                             PrepMode = "1. În oala de fiert supa se topeşte untul şi se pun prazul tăiat rondele şi ceapa tăiată peştişori. Se amestecă şi se lasă 10 minute să se înmoaie.\r\n2. Se adaugă cartofii curăţaţi şi tăiaţi rondele foarte subţiri. Se lasă 2 minute să se călească uşor.\r\n3. Se adaugă sare, piper, nucşoară, lapte şi apă şi se lasă la fiert 30 de minute.\r\n4. Apoi, se mixează ingredientele şi se aduce supa imediat la masă presărată cu mărar.\r\n",
@@ -1680,7 +1683,7 @@ namespace CulinaryMap.Migrations
                         {
                             Id = 34,
                             History = "",
-                            Latitude = 44.10m,
+                            Latitude = 44.1m,
                             Longitude = 24.34m,
                             Name = "Tarta de praz cu morcovi",
                             PrepMode = "1. Morcovii se răzuiesc şi se trec prin răzătoarea cu ochiuri mari. Prazul se curăţă şi se taie rondele fine.\r\n2. Într-o lingură de ulei, se călesc legumele până devin translucide şi apoi se lasă să se răcească.\r\n3. Ouăle se bat ca pentru omletă, se adaugă laptele şi brânza trecută prin răzătoare.\r\n4. Se amestecă ouăle cu legumele, sare şi piper, după gust, şi se toarnă într-o formă rotundă sau o cratiţă care merge la cuptor. Se dă la copt pentru 45 de minute până ce o scobitoare introdusă iese curată.",
@@ -1717,7 +1720,7 @@ namespace CulinaryMap.Migrations
                             Id = 37,
                             History = "",
                             Latitude = 44.15m,
-                            Longitude = 28.60m,
+                            Longitude = 28.6m,
                             Name = "Tochitura Dobrogeana",
                             PrepMode = "Pasul 1\r\nPrima dată, ia carnea de porc, pe care o tai în cubulețe medii. Pregătește o tigaie încăpătoare și pune uleiul sau untura la încins. Când a devenit suficient de fierbinte, adaugă bucățelele de carne și lasă-le pe foc până când încep să albească. Adaugă acum cele două căni de apă, piperul boabe și foile de dafin.\r\nPasul 2\r\nLasă totul la fiert la foc mic pentru aproximativ 30 de minute, până când carnea devine moale, iar sosul scade. După ce sosul a scăzut suficient, iar carnea este numai bună, poți adăuga vinul, pasta de roșii și usturoiul tocat mărunțel. Amestecă totul foarte bine, apoi potrivește gustul preparatului cu sare, boia, cimbru și piper. Mai lasă totul pe foc aproximativ 10 minute, apoi poți pune tochitura deoparte.\r\nPasul 3\r\nAcum este timpul să te pregătești mămăliguța cremoasă alături de care vei servi tochitura dobrogeană. Pentru aceasta ai nevoie de:\r\n1 pahar de Mălai Extra Gold Raftul Bunicii - good\r\n4 pahare cu apă - good\r\n1 praf de sare\r\n1 lingură de unt\r\nMod de preparare mămăligă cremoasă\r\nPasul 1\r\nDupă ce ai făcut rost de toate ingredientele, pune apa la fiert până când începe să fiarbă, toarnă apoi mălaiul în ploaie și amestecă continuu pentru a nu forma cocoloașe.\r\nPasul 2\r\nPăstrează mămăliga la foc mic până când devine cremoasă și se desprinde de marginile vasului. Răstoarn-o apoi pe o farfurie mare și ai terminat.\r\nPasul 3\r\nDupă ce mămăliguța este gata, pregătește câte un ou ochi pentru fiecare porție de tochitură și rade deasupra acestuia brânza de vaci.\r\nAșază toate elementele pe farfurie și apoi îi poți chema pe cei dragi pentru a servi o masă tradițională delicioasă, așa cum se servește și în zona Dobrogei.\r\n",
                             PrepTime = "50 min",
@@ -1729,7 +1732,7 @@ namespace CulinaryMap.Migrations
                             Id = 38,
                             History = "Cu brânză sărată, dulce sau simplă, plăcinta dobrogeană este un preparat de mare tradiție în familiile românești, nelipsit de pe mesele de sărbătoare.\r\nÎn Dobrogea, există chiar o tradiție culinară, care continuă să fie transmisă din generație în generație, în care mireasa, a doua zi după nuntă, trebuie să pregătească o plăcintă dobrogeană pentru toți musafirii și să demonstreze că poate face cea mai subțire foaie de plăcintă. În acest fel, rețeta bunicii poate fi transmisă mai departe și poate bucura generațiile viitoare.\r\n",
                             Latitude = 45.16m,
-                            Longitude = 28.80m,
+                            Longitude = 28.8m,
                             Name = "Placinta Dobrogeana",
                             PrepMode = "Pasul 1\r\nPrima dată vei începe cu prepararea foii de plăcintă. Pentru aceasta ai nevoie de un bol micuț, în care trebuie să amesteci drojdia cu o linguriță de zahăr, până când obții o pastă lichidă.\r\nSeparat, într-un bol mai mare, adaugă un kg de Făină Superioară 000 Raftul bunicii, pasta pe care ai preparat-o anterior, două linguri de ulei, două linguri de oțet și două-trei lingurițe de sare.\r\nAcum este timpul să îți sufleci bine mânecile, și cu zâmbetul pe buze, să te apuci de frământat. Dacă ți se pare că aluatul devine foarte lipicios, adaugă treptat mai multă făină, până când observi că ți se desprinde de pe mâini. După de ai terminat de frământat, împarte coca în două bucăți mari și lasă-le la odihnit în timp ce te ocupi de compoziție.\r\nPasul 2\r\nPentru a prepara compoziția, pregătește un bol mare în care vei începe să razi brânza sărată. Peste aceasta adaugă cele trei ouă, pliculețele de zahăr vanilat, coaja rasă de la o lămâie și cana cu zahăr. Apoi, începe să amesteci toate ingredientele foarte bine.\r\nPasul 3\r\nIa cele două două bucăți de aluat pe care le-ai lăsat la dospit și împarte-le pe jumătate, astfel încât, să obții patru mingiuțe de cocă.\r\nPresară puțină făină pe blatul de lucru și cu ajutorul unui sucitor, întinde prima foaie de plăcintă. Stropește-o cu puțin ulei, apoi adaugă câteva linguri din compoziția cu brânză doar în partea de jos a foii. Întinde foarte bine compoziția, apoi, apucă partea de foaie liberă și acoperă cu ea cealaltă parte care conține crema de brânză.\r\nAstfel, vei obține un pachețel delicios gata de pus în tavă. Procedează în același fel și cu celelalte trei foi de plăcintă.\r\nPasul 4\r\nPregătește o tavă încăpătoare și așază cele patru foi de plăcintă umplute cu brânză, după ce ai uns-o în prealabil cu ulei. Înainte de a pune totul la cuptor, ia un bol micuț și amestecă foarte bine două ouă și o cană de iaurt. După ce ai obținut un mix omogen, întinde totul peste plăcintă și asigură-te că întinzi uniform compoziția.\r\nPasul 5\r\nAcum, plăcinta este gata să stea la cuptor aproximativ 40-50 de minute, la foc mic. La final, vei obține o plăcintă aromată și gustoasă, de care cei dragi cu greu se vor putea sătura.\r\n",
                             PrepTime = "90 min",
@@ -1752,7 +1755,7 @@ namespace CulinaryMap.Migrations
                         {
                             Id = 40,
                             History = "",
-                            Latitude = 45.40m,
+                            Latitude = 45.4m,
                             Longitude = 28.03m,
                             Name = "Saramura de Crap",
                             PrepMode = "1. Într-o oală, se pune un litru de apă la fiert cu boabele de piper, sare, frunze de dafin, ardei iute tocat şi roşioare. Se lasă să fiarbă 10 minute şi se dă deoparte. Se adaugă mărarul tocat mărunt.\r\n2. Pe grătarul încins se frig medalioanele de peşte şi, pe măsură ce se rumenesc, se scot şi se pun într-un vas. Se presară felioare de usturoi.\r\n3. Se toarnă zeama fiartă cu roşiile şi se lasă 10 minute înainte de a-l aduce la masă.\r\n",

@@ -1,5 +1,5 @@
 
 <div class="h-100" *ngIf="fullRecipes">
-  <app-header class="mb-0" [recipes]="fullRecipes"></app-header>
+  <app-header class="mb-0" [recipes]="fullRecipes" (filtersEmitter) = "onCheckedValuesChangedButton($event)" (recipeEmitter)="onSelectedRecipe($event)"></app-header>
   <app-map class="mt-0"></app-map>
 </div>
