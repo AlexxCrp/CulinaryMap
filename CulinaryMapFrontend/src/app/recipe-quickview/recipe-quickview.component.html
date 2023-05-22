@@ -1,8 +1,8 @@
 <div class="card" style="width: 12rem;">
   <img src={{recipe.images[0]}} class="card-img-top" alt="...">
-  <div class="card-body">
+  <div class="card-body" routerLinkActive="active">
     <h5 class="card-title">{{recipe.name}}</h5>
     <p class="card-text">Regiune: {{recipe.region}}</p>
-    <a href="#" class="btn btn-primary">Vezi reteta</a>
+    <a routerLink="/recipe/{{recipe.id}}" class="btn btn-primary">Vezi reteta</a>
   </div>
 </div>

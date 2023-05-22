@@ -2,7 +2,6 @@ import { Component, AfterViewInit, Input, ViewContainerRef, ViewChild, AfterCont
 import * as L from 'leaflet';
 import { FullRecipe } from '../models/fullRecipe.model';
 import {RecipeQuickviewComponent} from '../recipe-quickview/recipe-quickview.component'
-import { createInjectableType } from '@angular/compiler';
 
 const iconRetinaUrl = 'assets/marker-icon-2x.png';
 const iconUrl = 'assets/marker-icon.png';
@@ -30,7 +29,7 @@ export class MapComponent implements AfterViewInit  {
 
   filteredRecipes: FullRecipe[];
   selectedRecipe: FullRecipe = null;
-
+  test:boolean = false;
   @ViewChild('vc', {read: ViewContainerRef}) vc: ViewContainerRef;
 
 
@@ -38,7 +37,7 @@ export class MapComponent implements AfterViewInit  {
 
 
   private initMap(): void {
-    const bounds = L.latLngBounds([42.62, 20.22], [48.27, 29.67]);
+    const bounds = L.latLngBounds([41.62, 19.22], [49.27, 30.67]);
 
     this.map = L.map('map', {
       maxBounds: bounds,

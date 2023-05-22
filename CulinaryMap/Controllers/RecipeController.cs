@@ -1,6 +1,7 @@
 ﻿using CulinaryMap.Models.Request;
 using CulinaryMap.Services;
 using CulinaryMap.Services.Interfaces;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using System.Runtime.CompilerServices;
 
@@ -16,7 +17,9 @@ namespace CulinaryMap.Controllers
             this.recipeService = recipeService;
         }
 
+        
         [HttpGet("ById")]
+        [Authorize(Policy = "User")]
         public async Task<IActionResult> GetRecipeById(int id)
         {
             try
@@ -35,6 +38,7 @@ namespace CulinaryMap.Controllers
         }
 
         [HttpGet]
+        [Authorize(Policy = "User")]
         public async Task<IActionResult> GetRecipes()
         {
             try
@@ -53,6 +57,7 @@ namespace CulinaryMap.Controllers
         }
 
         [HttpPost]
+        [Authorize(Policy = "Admin")]
         public async Task<IActionResult> CreateRecipe(RecipeModel model)
         {
             try
@@ -71,6 +76,7 @@ namespace CulinaryMap.Controllers
         }
 
         [HttpPut]
+        [Authorize(Policy = "Admin")]
         public async Task<IActionResult> UpdateRecipe(UpdateRecipeModel model)
         {
             try
@@ -89,6 +95,7 @@ namespace CulinaryMap.Controllers
         }
 
         [HttpDelete]
+        [Authorize(Policy = "Admin")]
         public IActionResult DeleteRecipe(int id)
         {
             try

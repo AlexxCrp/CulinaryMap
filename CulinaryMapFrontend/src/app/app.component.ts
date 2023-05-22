@@ -1,8 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FullRecipe } from './models/fullRecipe.model';
 import { RecipeService } from './services/recipe.service';
-import { HttpClient } from '@angular/common/http';
-import { map } from 'rxjs';
 
 @Component({
   selector: 'app-root',
@@ -12,8 +10,7 @@ import { map } from 'rxjs';
 export class AppComponent implements OnInit {
 
   fullRecipes : FullRecipe[] = null;
-  filteredRecipe: FullRecipe[]
-  title: any;
+  filteredRecipe: FullRecipe[];
 
   constructor(public recipeService: RecipeService) {
 

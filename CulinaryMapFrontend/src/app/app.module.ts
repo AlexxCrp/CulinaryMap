@@ -1,4 +1,4 @@
-import { Injector, NgModule } from '@angular/core';
+import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { HttpClientModule } from '@angular/common/http';
 import { CommonModule } from '@angular/common';
@@ -18,6 +18,19 @@ import { RecipeScrollspyComponent } from './recipe-scrollspy/recipe-scrollspy.co
 import { RecipeQuickviewComponent } from './recipe-quickview/recipe-quickview.component';
 import { MainPageComponent } from './main-page/main-page.component';
 import { MapComponent } from './map/map.component';
+import { RouterModule, Routes } from '@angular/router';
+import { AuthComponent } from './auth/auth.component';
+
+const appRoutes: Routes = [
+  { path: 'home',
+    component: HomeWrapperComponent },
+  { path: 'recipe/:id',
+  component: RecipePageComponent },
+  {
+    path:'auth',
+    component: AuthComponent
+  }
+];
 
 
 @NgModule({
@@ -32,14 +45,19 @@ import { MapComponent } from './map/map.component';
     RecipeScrollspyComponent,
     RecipeQuickviewComponent,
     MainPageComponent,
-    MapComponent
+    MapComponent,
+    AuthComponent
   ],
   imports: [
     BrowserModule,
     FormsModule,
     CommonModule,
     HttpClientModule,
-    NgbModule
+    NgbModule,
+    RouterModule.forRoot(appRoutes)
+  ],
+  exports: [
+    RouterModule
   ],
   providers: [
     RecipeService,
@@ -49,8 +67,4 @@ import { MapComponent } from './map/map.component';
   entryComponents:[RecipeQuickviewComponent]
 })
 export class AppModule {
-  // constructor(private injector: Injector) {
-  //   const PopupElement = createCustomElement(RecipeQuickviewComponent, {injector});
-  //   // Register the custom element with the browser.
-  //   customElements.define('popup-element', PopupElement);
  }

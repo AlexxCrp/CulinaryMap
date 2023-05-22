@@ -1,0 +1,14 @@
+@import '../../styles.scss';
+
+.btn{
+  background-color: $secondary-color;
+  color: black;
+}
+.btn:not(:disabled):not(:disabled):active {
+  background-color: $accent-color;
+}
+
+.clickable{
+  color: blue;
+  cursor: pointer;
+}

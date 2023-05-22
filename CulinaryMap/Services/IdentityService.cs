@@ -40,7 +40,7 @@ namespace CulinaryMap.Services
                 return "Logarea a esuat, incearca din nou!";
             }
 
-            string token = CreateToken(user);
+            string token = await CreateToken(user);
 
             return token;
 
@@ -62,24 +62,32 @@ namespace CulinaryMap.Services
             {
                 await userManager.AddToRoleAsync(newUser, registerModel.Role);
             }
-            string token = CreateToken(newUser);
+            string token = await CreateToken(newUser);
 
             return token;
 
         }
 
-        private string CreateToken(User user)
+        private async Task<string> CreateToken(User user)
         {
             byte[] secretKey = Encoding.UTF8.GetBytes(configuration.GetSection("JwtSettings").GetSection("SecretKey").Get<string>());
+            var roles = await userManager.GetRolesAsync(user);
+            var claims = new List<Claim>()
+            {
+                new Claim(JwtRegisteredClaimNames.Sub, user.UserName),
+                new Claim(JwtRegisteredClaimNames.Jti, Guid.NewGuid().ToString()),
+                new Claim(JwtRegisteredClaimNames.Email, user.Email),
+                new Claim(JwtRegisteredClaimNames.NameId, user.Id)
+            };
+
+            foreach(var role in roles) 
+            {
+                claims.Add(new Claim(ClaimTypes.Role, role));
+            }
+
             SecurityTokenDescriptor tokenDescriptor = new()
             {
-                Subject = new ClaimsIdentity(new[]
-                {
-                    new Claim(JwtRegisteredClaimNames.Sub, user.UserName),
-                    new Claim(JwtRegisteredClaimNames.Jti, Guid.NewGuid().ToString()),  
-                    new Claim(JwtRegisteredClaimNames.Email, user.Email),
-                    new Claim(JwtRegisteredClaimNames.NameId, user.Id)
-                }),
+                Subject = new ClaimsIdentity(claims),
                 Expires = DateTime.UtcNow.AddHours(2),
                 SigningCredentials = new SigningCredentials(new SymmetricSecurityKey(secretKey), SecurityAlgorithms.HmacSha256Signature)
             };

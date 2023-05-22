@@ -2,13 +2,13 @@
   <div class="col-4">
     <nav id="navbar-example3" class="h-100 flex-column d-flex justify-content-center pe-4 border-end position-sticky top-0">
       <nav class="nav nav-pills flex-column d-flex align-items-center">
-        <a class="nav-link" href="#name">Nume</a>
-        <a class="nav-link" href="#region">Regiune</a>
-        <a class="nav-link" href="#preptime" *ngIf="recipe.prepTime !== '' and recipe.prepTime !== 'NA' ">Timp de preparare</a>
-        <a class="nav-link" href="#ingredients">Ingrediente</a>
-        <a class="nav-link" href="#preptime">Tip</a>
-        <a class="nav-link" href="#history" *ngIf="recipe.history !== '' and recipe.history !== 'NA'">Istorie</a>
-        <a class="nav-link" href="#prepmode">Mod de preparare</a>
+        <a class="nav-link" (click)="scrollToElement('name')">Nume</a>
+        <a class="nav-link" (click)="scrollToElement('region')">Regiune</a>
+        <a class="nav-link" (click)="scrollToElement('preptime')" *ngIf="recipe.prepTime !== '' && recipe.prepTime !== 'NA'">Timp de preparare</a>
+        <a class="nav-link" (click)="scrollToElement('ingredients')">Ingrediente</a>
+        <a class="nav-link" (click)="scrollToElement('preptype')">Tip</a>
+        <a class="nav-link" (click)="scrollToElement('history')" *ngIf="recipe.history !== '' && recipe.history !== 'NA'">Istorie</a>
+        <a class="nav-link" (click)="scrollToElement('prepmode')">Mod de preparare</a>
       </nav>
     </nav>
   </div>
@@ -23,7 +23,7 @@
         <h4>Regiune</h4>
         <p></p>
       </div>
-      <div id="preptime" *ngIf="recipe.prepTime !== '' and recipe.prepTime !== 'NA' ">
+      <div id="preptime" *ngIf="recipe.prepTime !== '' && recipe.prepTime !== 'NA' ">
         <h4>Timp de preparare</h4>
         <p> {{recipe.prepTime}} </p>
       </div>
@@ -35,7 +35,7 @@
         <h4>Tip</h4>
         <p></p>
       </div>
-      <div id="history" *ngIf="recipe.history !== '' and recipe.history !== 'NA'">
+      <div id="history" *ngIf="recipe.history !== '' && recipe.history !== 'NA'">
         <h4>Istorie</h4>
         <p> {{recipe.history}} </p>
       </div>

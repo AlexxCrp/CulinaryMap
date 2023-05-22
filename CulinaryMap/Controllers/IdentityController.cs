@@ -1,5 +1,6 @@
 ﻿using CulinaryMap.Models;
 using CulinaryMap.Models.Request;
+using CulinaryMap.Models.Response;
 using CulinaryMap.Services.Interfaces;
 using Microsoft.AspNetCore.Mvc;
 
@@ -22,7 +23,7 @@ namespace CulinaryMap.Controllers
             try 
             {
                 string token = await identityService.Register(registerModel);
-                return Ok(token);
+                return Ok(new AuthResponseModel() { Token = token});
             }
             catch
             {
@@ -37,7 +38,7 @@ namespace CulinaryMap.Controllers
             try
             {
                 string token = await identityService.Login(loginModel);
-                return Ok(token);
+                return Ok(new AuthResponseModel() { Token = token });
             }
             catch
             {

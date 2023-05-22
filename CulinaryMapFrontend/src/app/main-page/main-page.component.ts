@@ -1,13 +1,14 @@
-import { Component, Input, ViewChild } from '@angular/core';
+import { Component, Input, OnInit, ViewChild } from '@angular/core';
 import { FullRecipe } from '../models/fullRecipe.model';
 import { MapComponent } from '../map/map.component';
+import { ActivatedRoute } from '@angular/router';
 
 @Component({
   selector: 'app-main-page',
   templateUrl: './main-page.component.html',
   styleUrls: ['./main-page.component.scss']
 })
-export class MainPageComponent {
+export class MainPageComponent{
   @Input() fullRecipes : FullRecipe[]
   filters: string[];
   recipeFromSearchbar: FullRecipe;
@@ -17,7 +18,6 @@ export class MainPageComponent {
   typeFilters: string[] = [];
 
   @ViewChild(MapComponent) mapComponent: MapComponent;
-
 
   onCheckedValuesChangedButton(values: string[]): void {
     // Do something with the checked values

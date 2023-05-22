@@ -1,0 +1,37 @@
+<div class="container w-25">
+  <form class="mt-5" #authForm="ngForm" (ngSubmit)="onSubmit(authForm)">
+    <div class="mb-3">
+      <label for="exampleInputEmail1" class="form-label">Email</label>
+      <input
+        type="email"
+        class="form-control"
+        id="inputEmail"
+        ngModel
+        name = "email"
+        required
+        email>
+    </div>
+    <div class="mb-3" *ngIf="!isLoginMode">
+      <label for="exampleInputEmail1" class="form-label">Nume utilizator</label>
+      <input type="username" class="form-control" id="inputUsername">
+    </div>
+    <div class="mb-3">
+      <label for="exampleInputPassword1" class="form-label">Parola</label>
+      <input
+        type="password"
+        class="form-control"
+        id="inputPassword"
+        ngModel
+        name = "password"
+        required
+        minlength="6">
+    </div>
+    <button type="submit" class="btn btn-primary" [disabled]="!authForm.valid">{{ isLoginMode ? 'Logare' : 'Inregistrare'}}</button>
+  </form>
+  <div class="text-center" *ngIf="isLoginMode">
+    <p>Nu ai cont? <a class="clickable" (click)="onSwitchMode()" >Inregistreaza-te</a></p>
+  </div>
+  <div class="text-center" *ngIf="!isLoginMode">
+    <p><a class="clickable" (click)="onSwitchMode()" >Inapoi la logare</a></p>
+  </div>
+</div>

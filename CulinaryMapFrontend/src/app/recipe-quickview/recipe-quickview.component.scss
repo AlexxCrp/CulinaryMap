@@ -1,0 +1,10 @@
+@import '../../styles.scss';
+
+.btn-primary{
+  color: black;
+  background-color: $accent-color;
+}
+
+.btn-primary:not(:disabled):not(:disabled):active {
+  background-color: $main-color;
+}
