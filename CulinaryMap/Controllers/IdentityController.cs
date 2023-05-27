@@ -22,8 +22,8 @@ namespace CulinaryMap.Controllers
         {
             try 
             {
-                string token = await identityService.Register(registerModel);
-                return Ok(new AuthResponseModel() { Token = token});
+                var response = await identityService.Register(registerModel);
+                return Ok(response);
             }
             catch
             {
@@ -37,8 +37,8 @@ namespace CulinaryMap.Controllers
         {
             try
             {
-                string token = await identityService.Login(loginModel);
-                return Ok(new AuthResponseModel() { Token = token });
+                var response = await identityService.Login(loginModel);
+                return Ok(response);
             }
             catch
             {

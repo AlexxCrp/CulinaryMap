@@ -1,11 +1,12 @@
 ﻿using CulinaryMap.Entities;
 using CulinaryMap.Models.Request;
+using CulinaryMap.Models.Response;
 
 namespace CulinaryMap.Services.Interfaces
 {
     public interface IIdentityService
     {
-        Task<string> Login(LoginModel loginModel);
-        Task<string> Register(RegisterModel registerModel);
+        Task<AuthResponseModel> Login(LoginModel loginModel);
+        Task<AuthResponseModel> Register(RegisterModel registerModel);
     }
 }

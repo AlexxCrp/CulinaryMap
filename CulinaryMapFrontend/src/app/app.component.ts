@@ -7,17 +7,17 @@ import { RecipeService } from './services/recipe.service';
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.scss']
 })
-export class AppComponent implements OnInit {
+export class AppComponent{ //implements OnInit {
 
-  fullRecipes : FullRecipe[] = null;
-  filteredRecipe: FullRecipe[];
+  // fullRecipes : FullRecipe[] = null;
+  // filteredRecipe: FullRecipe[];
 
-  constructor(public recipeService: RecipeService) {
+  // constructor(public recipeService: RecipeService) {
 
-  }
+  // }
 
-  ngOnInit(): void {
-    this.recipeService.getRecipes().subscribe((result : FullRecipe[]) =>
-      this.fullRecipes = result);
-  }
+  // ngOnInit(): void {
+  //   this.recipeService.getRecipes().subscribe((result : FullRecipe[]) =>
+  //     this.fullRecipes = result);
+  // }
 }

@@ -48,4 +48,35 @@ export class RecipeService {
     );
   }
 
+  postRecipe(recipe: any): Observable<any> {
+    return this.authService.user.pipe(
+      take(1),
+      switchMap(user => {
+        const headers = new HttpHeaders().set('Authorization', `Bearer ${user.token}`);
+        return this.http.post<any>(this.endpoint, recipe, { headers });
+      })
+    );
+  }
+
+  putRecipe(recipe: any): Observable<any> {
+    return this.authService.user.pipe(
+      take(1),
+      switchMap(user => {
+        const headers = new HttpHeaders().set('Authorization', `Bearer ${user.token}`);
+        return this.http.put<any>(this.endpoint, recipe, { headers });
+      })
+    );
+  }
+
+  deleteRecipe(id: any): Observable<any> {
+    return this.authService.user.pipe(
+      take(1),
+      switchMap(user => {
+        const headers = new HttpHeaders().set('Authorization', `Bearer ${user.token}`);
+        const url = `${this.endpoint}?id=${id}`;
+        return this.http.delete<any>(url, { headers });
+      })
+    );
+  }
+
 }

@@ -1,7 +1,9 @@
 ﻿using AutoMapper;
 using CulinaryMap.Entities;
 using CulinaryMap.Models.Request;
+using CulinaryMap.Models.Response;
 using CulinaryMap.Services.Interfaces;
+using Microsoft.AspNetCore.Http.HttpResults;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.IdentityModel.Tokens;
 using System.IdentityModel.Tokens.Jwt;
@@ -26,32 +28,33 @@ namespace CulinaryMap.Services
             this.mapper = mapper;
         }
 
-        public async Task<string> Login(LoginModel loginModel)
+        public async Task<AuthResponseModel> Login(LoginModel loginModel)
         {
             User? user = await userManager.FindByEmailAsync(loginModel.Email);
             if (user is null)
             {
-                return $"Utilizatorul cu adresa de email {loginModel.Email} nu exista";
+                throw new Exception($"User inexistent");
             }
 
             bool userHasValidPassword = await userManager.CheckPasswordAsync(user, loginModel.Password);
             if(!userHasValidPassword) 
             {
-                return "Logarea a esuat, incearca din nou!";
+                throw new Exception($"Utilizatorul cu adresa de email {loginModel.Email} nu exista");
             }
 
             string token = await CreateToken(user);
+            var role = await userManager.GetRolesAsync(user);
 
-            return token;
+            return new AuthResponseModel() { Token = token, Role = role[0] };
 
         }
 
-        public async Task<string> Register(RegisterModel registerModel)
+        public async Task<AuthResponseModel> Register(RegisterModel registerModel)
         {
             User? existingUser = await userManager.FindByEmailAsync(registerModel.Email);
             if (existingUser is not null) 
             {
-                return $"Email {registerModel.Email} deja inregistrat";
+                throw new Exception($"Email {registerModel.Email} deja inregistrat");
             }
 
             User newUser = mapper.Map<User>(registerModel);
@@ -63,8 +66,10 @@ namespace CulinaryMap.Services
                 await userManager.AddToRoleAsync(newUser, registerModel.Role);
             }
             string token = await CreateToken(newUser);
+            var role = await userManager.GetRolesAsync(newUser);
 
-            return token;
+
+            return new AuthResponseModel() { Token = token, Role = role[0] };
 
         }
 

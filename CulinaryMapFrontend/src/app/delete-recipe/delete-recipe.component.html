@@ -1,0 +1,9 @@
+<form class="d-flex mt-2 searchForm">
+  <div class="input-group">
+		<input placeholder="Alege reteta pentru a sterge..." id="typeahead-config" type="text" class="form-control" [ngbTypeahead]="search" name = "searchRecipe" (selectItem)="selectRecipe($event.item)"
+    />
+  </div>
+</form>
+<div class="col-12">
+  <button type="submit" class="btn btn-primary" (click)="submitForm()">Sterge Reteta</button>
+</div>

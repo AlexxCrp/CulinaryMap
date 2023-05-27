@@ -1,15 +1,16 @@
-import { Component, Input, OnInit, ViewChild } from '@angular/core';
+import { AfterViewInit, Component, Input, OnInit, ViewChild } from '@angular/core';
 import { FullRecipe } from '../models/fullRecipe.model';
 import { MapComponent } from '../map/map.component';
-import { ActivatedRoute } from '@angular/router';
+import { Ingredient } from '../models/ingredient.model';
 
 @Component({
   selector: 'app-main-page',
   templateUrl: './main-page.component.html',
   styleUrls: ['./main-page.component.scss']
 })
-export class MainPageComponent{
-  @Input() fullRecipes : FullRecipe[]
+export class MainPageComponent implements AfterViewInit{
+  @Input() fullRecipes : FullRecipe[];
+  @Input() ingredients: Ingredient[];
   filters: string[];
   recipeFromSearchbar: FullRecipe;
   filteredRecipes: FullRecipe[]
@@ -17,7 +18,16 @@ export class MainPageComponent{
   regionFilters: string[] = [];
   typeFilters: string[] = [];
 
-  @ViewChild(MapComponent) mapComponent: MapComponent;
+  @ViewChild(MapComponent, {static : false}) mapComponent: MapComponent;
+
+  ngAfterViewInit(): void {
+    // Call the updateMarkers method after the view has been initialized
+      setTimeout(() => {
+        this.mapComponent.filteredRecipes = this.filteredRecipes;
+
+        this.mapComponent.updateMarkers(this.filteredRecipes);
+      }, 5);
+  }
 
   onCheckedValuesChangedButton(values: string[]): void {
     // Do something with the checked values
@@ -36,9 +46,15 @@ export class MainPageComponent{
         this.typeFilters.push(values[i]);
       }
     }
-    this.filteredRecipes = this.fullRecipes.filter(recipe => (this.regionFilters.includes(recipe.region) && this.typeFilters.includes(recipe.type))
+    if(this.filters.length > 1){
+      this.filteredRecipes = this.fullRecipes.filter(recipe => (this.regionFilters.includes(recipe.region) && this.typeFilters.includes(recipe.type))
                                                               || (this.regionFilters.includes(recipe.region) && this.typeFilters.length === 0)
                                                               || (this.regionFilters.length === 0 && this.typeFilters.includes(recipe.type)));
+    }
+    //there are no filters selected, only the flag is present in the filter list
+    if(this.filters.length === 1){
+      this.filteredRecipes = this.fullRecipes;
+    }
     this.mapComponent.updateMarkers(this.filteredRecipes);
   }
 

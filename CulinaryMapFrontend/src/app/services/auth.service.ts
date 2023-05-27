@@ -5,6 +5,7 @@ import { User } from "../models/user.model";
 
 interface AuthResponseData{
   token: string;
+  role: string;
 }
 
 @Injectable({providedIn:'root'})
@@ -23,7 +24,7 @@ export class AuthService{
         role: this.role
       }
     ).pipe(tap(resData => {
-      const user = new User(resData.token);
+      const user = new User(resData.token, resData.role);
       this.user.next(user);
       })
     );
@@ -36,7 +37,7 @@ export class AuthService{
         password: password
       }
     ).pipe(tap(resData => {
-      const user = new User(resData.token);
+      const user = new User(resData.token, resData.role);
       this.user.next(user);
       })
     );

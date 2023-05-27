@@ -1,12 +1,11 @@
 export class User{
-  constructor(/*public email: string, public id:string, */private _token: string, /*private _tokenExpDate: Date*/) {}
+  constructor(private _token: string, private _role: string /*private _tokenExpDate: Date*/) {}
 
   get token(){
-    // if(!this._tokenExpDate || new Date() > this._tokenExpDate)
-    // {
-    //   return null;
-    // }
-    return this._token
+    return this._token;
+  }
+  get role(){
+    return this._role;
   }
 
 }

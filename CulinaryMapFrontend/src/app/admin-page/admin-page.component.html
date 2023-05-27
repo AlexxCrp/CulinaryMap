@@ -1,0 +1,19 @@
+<div class="container d-flex justify-content-center w-100">
+  <div class="container w-50">
+    <div class="form-check form-check-inline">
+      <input class="form-check-input" type="radio" name="inlineRadioOptions" id="post" value="post" [(ngModel)]="selectedOption">
+      <label class="form-check-label" for="post">Creeaza Reteta</label>
+    </div>
+    <div class="form-check form-check-inline">
+      <input class="form-check-input" type="radio" name="inlineRadioOptions" id="put" value="put" [(ngModel)]="selectedOption">
+      <label class="form-check-label" for="put">Updateaza Reteta</label>
+    </div>
+    <div class="form-check form-check-inline">
+      <input class="form-check-input" type="radio" name="inlineRadioOptions" id="delete" value="delete" [(ngModel)]="selectedOption">
+      <label class="form-check-label" for="delete">Sterge Reteta</label>
+    </div>
+    <app-create-recipe *ngIf="selectedOption === 'post'"></app-create-recipe>
+    <app-delete-recipe *ngIf="selectedOption === 'delete'"></app-delete-recipe>
+    <app-update-recipe *ngIf="selectedOption === 'put'"></app-update-recipe>
+  </div>
+</div>

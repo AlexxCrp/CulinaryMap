@@ -20,6 +20,12 @@ import { MainPageComponent } from './main-page/main-page.component';
 import { MapComponent } from './map/map.component';
 import { RouterModule, Routes } from '@angular/router';
 import { AuthComponent } from './auth/auth.component';
+import { IngredientCachingService } from './services/ingredientCaching.service';
+import { IngredientService } from './services/ingredient.service';
+import { AdminPageComponent } from './admin-page/admin-page.component';
+import { UpdateRecipeComponent } from './update-recipe/update-recipe.component';
+import { CreateRecipeComponent } from './create-recipe/create-recipe.component';
+import { DeleteRecipeComponent } from './delete-recipe/delete-recipe.component';
 
 const appRoutes: Routes = [
   { path: 'home',
@@ -29,7 +35,9 @@ const appRoutes: Routes = [
   {
     path:'auth',
     component: AuthComponent
-  }
+  },
+  {path: 'admin',
+    component: AdminPageComponent}
 ];
 
 
@@ -46,7 +54,11 @@ const appRoutes: Routes = [
     RecipeQuickviewComponent,
     MainPageComponent,
     MapComponent,
-    AuthComponent
+    AuthComponent,
+    AdminPageComponent,
+    UpdateRecipeComponent,
+    CreateRecipeComponent,
+    DeleteRecipeComponent
   ],
   imports: [
     BrowserModule,
@@ -54,14 +66,16 @@ const appRoutes: Routes = [
     CommonModule,
     HttpClientModule,
     NgbModule,
-    RouterModule.forRoot(appRoutes)
+    RouterModule.forRoot(appRoutes),
   ],
   exports: [
     RouterModule
   ],
   providers: [
     RecipeService,
-    RecipeCachingService
+    RecipeCachingService,
+    IngredientCachingService,
+    IngredientService
   ],
   bootstrap: [AppComponent],
   entryComponents:[RecipeQuickviewComponent]

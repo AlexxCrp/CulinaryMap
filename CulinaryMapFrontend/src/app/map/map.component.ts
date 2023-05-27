@@ -1,4 +1,4 @@
-import { Component, AfterViewInit, Input, ViewContainerRef, ViewChild, AfterContentInit } from '@angular/core';
+import { Component, AfterViewInit, Input, ViewContainerRef, ViewChild, AfterContentInit, OnChanges, SimpleChanges } from '@angular/core';
 import * as L from 'leaflet';
 import { FullRecipe } from '../models/fullRecipe.model';
 import {RecipeQuickviewComponent} from '../recipe-quickview/recipe-quickview.component'
@@ -23,10 +23,10 @@ L.Marker.prototype.options.icon = iconDefault;
   templateUrl: './map.component.html',
   styleUrls: ['./map.component.scss']
 })
-export class MapComponent implements AfterViewInit  {
+export class MapComponent implements AfterViewInit   {
   private map;
   private markers = []; // keep track of added markers
-
+  @Input() preFilteredRecipes : FullRecipe[]
   filteredRecipes: FullRecipe[];
   selectedRecipe: FullRecipe = null;
   test:boolean = false;
@@ -49,43 +49,64 @@ export class MapComponent implements AfterViewInit  {
       attribution:
         '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
     }).addTo(this.map);
+
+    this.filteredRecipes = this.preFilteredRecipes;
+    this.addMarkers();
   }
 
   ngAfterViewInit(): void {
     this.initMap();
   }
 
-  // function to add markers for filtered recipes
+  setFilteredRecipes(filteredRecipes: FullRecipe[]): void {
+    this.filteredRecipes = filteredRecipes;
+  }
+
   private addMarkers(): void {
     // remove existing markers
     this.markers.forEach((marker) => marker.removeFrom(this.map));
     this.markers = [];
-    if(this.selectedRecipe === null)
-    {
+
+    // Hide all quickview components initially
+    this.vc.clear();
+
+    if (this.selectedRecipe === null) {
       // add markers for filtered recipes
       this.filteredRecipes.forEach((recipe) => {
-        var quickView = this.vc.createComponent<RecipeQuickviewComponent>(RecipeQuickviewComponent);
+        const quickView = this.vc.createComponent<RecipeQuickviewComponent>(RecipeQuickviewComponent);
         quickView.instance.recipe = recipe;
+        quickView.location.nativeElement.style.visibility = 'hidden'; // Set visibility to hidden
+
         const marker = L.marker([recipe.latitude, recipe.longitude])
-          .bindPopup(quickView.location.nativeElement)
+          .bindPopup(() => {
+            // Show the quickview component when the marker is clicked
+            quickView.location.nativeElement.style.visibility = 'visible';
+            return quickView.location.nativeElement;
+          })
           .addTo(this.map);
         this.markers.push(marker);
       });
-    }
-    else
-    {
-      var quickView = this.vc.createComponent<RecipeQuickviewComponent>(RecipeQuickviewComponent);
+    } else {
+      const quickView = this.vc.createComponent<RecipeQuickviewComponent>(RecipeQuickviewComponent);
       quickView.instance.recipe = this.selectedRecipe;
+      quickView.location.nativeElement.style.visibility = 'hidden'; // Set visibility to hidden
+
       const marker = L.marker([this.selectedRecipe.latitude, this.selectedRecipe.longitude])
-          .bindPopup(quickView.location.nativeElement)
-          .addTo(this.map);
-        this.markers.push(marker);
+        .bindPopup(() => {
+          // Show the quickview component when the marker is clicked
+          quickView.location.nativeElement.style.visibility = 'visible';
+          return quickView.location.nativeElement;
+        })
+        .addTo(this.map);
+      this.markers.push(marker);
     }
 
     console.log(this.filteredRecipes[0].latitude);
   }
 
-  // function to update markers when filtered recipes change
+
+
+  //function to update markers when filtered recipes change
   public updateMarkers(filteredRecipes : FullRecipe[]): void {
     this.filteredRecipes = filteredRecipes;
     this.selectedRecipe = null;
@@ -96,4 +117,6 @@ export class MapComponent implements AfterViewInit  {
     this.filteredRecipes = null;
     this.addMarkers();
   }
+
+
 }

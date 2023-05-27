@@ -1,0 +1,50 @@
+<form class="row g-3" #recipeForm="ngForm" (ngSubmit)="submitForm(recipeForm)">
+  <div class="col-12">
+    <label for="numeInput" class="form-label">Nume</label>
+    <input type="text" class="form-control" id="numeInput" placeholder="" name="numeInput" [(ngModel)] = "model.numeInput">
+  </div>
+  <div class="col-12">
+      <label for="istorieText">Istorie</label>
+      <textarea class="form-control" id="istorieText" rows="3" name = "istorieText" [(ngModel)] = "model.istorieText"></textarea>
+  </div>
+  <div class="col-12">
+    <label for="preparareText">Mod de preparare</label>
+    <textarea class="form-control" id="preparareText" rows="3" name = "preparareText" [(ngModel)] = "model.preparareText"></textarea>
+  </div>
+  <div class="col-md-4">
+    <label for="inputStateTip" class="form-label">Tip</label>
+    <select id="inputStateTip" class="form-select" name = "inputStateTip" [(ngModel)] = "model.inputStateTip">
+      <option>Aperitiv</option>
+      <option>Fel principal</option>
+      <option>Desert</option>
+    </select>
+  </div>
+  <div class="col-md-4">
+    <label for="inputStateRegiune" class="form-label" >Regiune</label>
+    <select id="inputStateRegiune" class="form-select" name = "inputStateRegiune" [(ngModel)] = "model.inputStateRegiune">
+      <option>Muntenia</option>
+      <option>Transilvania</option>
+      <option>Moldova&Bucovina</option>
+      <option>Banat</option>
+      <option>Oltenia</option>
+      <option>Maramures</option>
+      <option>Crisana</option>
+      <option>Dobrogea</option>
+    </select>
+  </div>
+  <div class="col-md-4">
+    <label for="timp" class="form-label">Timp de preparare</label>
+    <input type="text" class="form-control" id="timp" name = "timp" [(ngModel)] = "model.timp">
+  </div>
+  <div class="col-md-6">
+    <label for="lat" class="form-label">Latitudine</label>
+    <input type="text" class="form-control" id="lat" name = "lat" [(ngModel)] = "model.lat">
+  </div>
+  <div class="col-md-6">
+    <label for="lon" class="form-label" >Longitudine</label>
+    <input type="text" class="form-control" id="lon" name = "lon" [(ngModel)] = "model.lon">
+  </div>
+  <div class="col-12">
+    <button type="submit" class="btn btn-primary">Adauga Reteta</button>
+  </div>
+</form>

@@ -1,11 +1,10 @@
 <nav class="navbar bg-body-tertiary navbar-expand navbarColor h-10">
   <div class="container-fluid d-flex flex-column align-items-center">
     <div class = "d-flex justify-content-center">
+      <a *ngIf="this.role === 'Admin'" routerLink="/admin" class="btn btn-primary">Pagina Admin</a>
       <app-filter-button [TipButon]="TypeRegiune" (checkedValuesButton)="onCheckedValuesChangedButton($event)"></app-filter-button>
       <app-filter-button [TipButon]="TypeTip" (checkedValuesButton)="onCheckedValuesChangedButton($event)"></app-filter-button>
-      <app-searchbar [recipes]="recipes" (selectedRecipe)="onSelectedRecipe($event)"></app-searchbar>
+      <app-searchbar [recipes]="recipes" [ingredients]="ingredients" (selectedRecipe)="onSelectedRecipe($event)"></app-searchbar>
     </div>
   </div>
 </nav>
-<!-- <p *ngFor="let filter of filters">{{filter}}</p>
-<p >{{recipe | json}}</p> -->
