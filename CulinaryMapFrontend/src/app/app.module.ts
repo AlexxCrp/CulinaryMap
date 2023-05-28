@@ -26,18 +26,25 @@ import { AdminPageComponent } from './admin-page/admin-page.component';
 import { UpdateRecipeComponent } from './update-recipe/update-recipe.component';
 import { CreateRecipeComponent } from './create-recipe/create-recipe.component';
 import { DeleteRecipeComponent } from './delete-recipe/delete-recipe.component';
+import { adminGuard, authGuard } from './services/auth.guard';
 
 const appRoutes: Routes = [
   { path: 'home',
-    component: HomeWrapperComponent },
+    component: HomeWrapperComponent,
+    canActivate: [authGuard]
+  },
   { path: 'recipe/:id',
-  component: RecipePageComponent },
+    component: RecipePageComponent,
+    canActivate: [authGuard]
+  },
   {
-    path:'auth',
+    path:'',
     component: AuthComponent
   },
   {path: 'admin',
-    component: AdminPageComponent}
+    component: AdminPageComponent,
+    canActivate: [authGuard, adminGuard]
+  }
 ];
 
 

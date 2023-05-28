@@ -4,3 +4,35 @@
   margin:0
 }
 
+.btn-primary{
+  color: black;
+  background-color: $secondary-color;
+}
+
+.btn-primary:not(:disabled):not(:disabled):active {
+  background-color: $accent-color;
+}
+
+
+@media (max-width: 576px) {
+  .navbar {
+    flex-wrap: wrap;
+    justify-content: center;
+  }
+
+  .filter-button,
+  .searchbar {
+    flex: 1;
+    margin: 5px;
+    max-width: 100%;
+  }
+
+  
+
+  .input-group {
+    width: 100%;
+  }
+}
+
+
+

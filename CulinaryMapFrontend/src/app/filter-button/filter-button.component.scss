@@ -18,3 +18,23 @@
 .my-button:not(:disabled):not(:disabled):active {
   background-color: #D9910B;
 }
+
+@media (max-width: 576px) {
+  .navbar {
+    flex-wrap: wrap;
+    justify-content: center;
+  }
+
+  .filter-button,
+  .searchbar {
+    flex: 1;
+    margin: 5px;
+    max-width: 100%;
+  }
+
+
+
+  .input-group {
+    width: 100%;
+  }
+}

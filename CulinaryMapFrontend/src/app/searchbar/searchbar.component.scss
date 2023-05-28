@@ -2,3 +2,13 @@
   height: 2em;
   width: 28em;
 }
+
+@media (max-width: 576px) {
+
+.searchForm {
+  width: 100%;
+  max-width: 100%;
+  box-sizing: border-box;
+  padding: 0 5px;
+}
+}

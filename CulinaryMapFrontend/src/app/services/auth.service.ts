@@ -14,6 +14,28 @@ export class AuthService{
   user = new BehaviorSubject<User>(null);
 
   constructor(private http: HttpClient) {}
+
+  private handleAuth(token: any, role: any){
+    const user = new User(token, role);
+    this.user.next(user);
+    localStorage.setItem('userData', JSON.stringify(user))
+  }
+
+  autoLogin(){
+    const userData: {
+      _token: string;
+      _role: string;
+    } = JSON.parse(localStorage.getItem('userData'));
+    if(!userData){
+      return;
+    }
+    const loadedUser = new User(userData._token, userData._role);
+
+    if(loadedUser.token){
+      this.user.next(loadedUser);
+    }
+  }
+
   role: string = 'User';
 
   register(email: string, password: string){
@@ -24,8 +46,7 @@ export class AuthService{
         role: this.role
       }
     ).pipe(tap(resData => {
-      const user = new User(resData.token, resData.role);
-      this.user.next(user);
+      this.handleAuth(resData.token, resData.role);
       })
     );
   }
@@ -37,8 +58,7 @@ export class AuthService{
         password: password
       }
     ).pipe(tap(resData => {
-      const user = new User(resData.token, resData.role);
-      this.user.next(user);
+      this.handleAuth(resData.token, resData.role);
       })
     );
 

@@ -115,6 +115,9 @@ export class UpdateRecipeComponent implements OnInit {
     this.recipeService.putRecipe(this.modelToPut).subscribe(
       response => {
         console.log('Recipe posted successfully:', response);
-      });
+    });
+
+    recipeForm.reset();
+
   }
 }

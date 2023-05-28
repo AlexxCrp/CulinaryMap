@@ -80,5 +80,7 @@ export class CreateRecipeComponent {
       response => {
         console.log('Recipe posted successfully:', response);
       });
+
+    recipeForm.reset();
   }
 }
